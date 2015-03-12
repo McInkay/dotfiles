@@ -5,8 +5,6 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-#Path
-export PATH=$PATH:~/.dotfiles/bin
 
 #Java
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0
