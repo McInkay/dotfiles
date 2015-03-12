@@ -1,0 +1,11 @@
+#!/bin/bash
+clear
+
+echo "Cheatsheet for quickly viewing commands."
+echo ""
+echo ""
+
+echo "Git aliases:"
+echo ""
+
+git config --get-regex alias | awk -F='\n' '{print substr($1, 7)}' | sed "s/ /\\`printf '\n%10s'`/"

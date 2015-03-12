@@ -1,0 +1,12 @@
+[user]
+	email = alistair.mckinlay@consult.nordea.com
+	name = Alistair McKinlay
+
+[alias]
+	cob = checkout -b
+	c = commit -m
+        a = !git add -u && git status
+        aa = !git add -u && git add . && git status
+	up = !git fetch && git rebase origin/master
+	k = !git fetch && gitk
+	s = status
