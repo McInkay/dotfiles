@@ -9,3 +9,14 @@ echo "Git aliases:"
 echo ""
 
 git config --get-regex alias | awk -F='\n' '{print substr($1, 7)}' | sed "s/ /\\`printf '\n%10s'`/"
+
+echo "Commands:"
+
+
+find ~/.dotfiles/bin -maxdepth 1 -type f -printf "%f\n"
+for d in ~/.dotfiles/bin/*/; do
+  echo ""
+  echo $d":"
+  find $d -maxdepth 1 -type f -printf "%f\n"
+done
+
