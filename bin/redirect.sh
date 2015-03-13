@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo bash << EOF
 
 case "$1" in
   start) sysctl -w net.ipv4.conf.all.accept_local=1
@@ -13,3 +14,5 @@ case "$1" in
 esac
 
 exit 0
+
+EOF
