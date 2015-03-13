@@ -30,10 +30,10 @@ while [ 1 -ne 0 ]; do
       fi
 
       LOCAL=$((git rev-parse @) 2>&1)
-      REMOTE=$((git rev-parse @{u}) 2>&1)
-      BASE=$((git merge-base @ @{u}) 2>&1)
       MASTERPOINT=$((git merge-base @ origin/master) 2>&1)
       MASTER=$((git rev-parse origin/master) 2>&1)
+      REMOTE=$((git rev-parse @{u}) 2>&1)
+      BASE=$((git merge-base @ @{u}) 2>&1)
 
       if [ $? -ne 0 ]; then
         TEMP+="No tracking branch\n"
@@ -57,5 +57,5 @@ while [ 1 -ne 0 ]; do
 
 clear
 echo -e "$TEMP"
-sleep 30
+sleep 10
 done
