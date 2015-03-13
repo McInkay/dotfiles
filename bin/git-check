@@ -1,0 +1,51 @@
+#!/bin/bash
+while [ 1 -ne 0 ]; do
+
+clear
+for d in ~/dev/*/; do
+  cd $d
+  if [ -d "./.git" ]; then
+    git fetch >> /dev/null
+    git diff --exit-code >> /dev/null
+    echo -e "\e[1m"$d "\e[0m"
+
+    if [ $? -ne 0 ]; then
+      echo "Unstaged changes"
+    fi
+
+    git diff --cached --exit-code >> /dev/null
+    if [ $? -ne 0 ]; then
+      echo "Staged, uncommited changes"
+    fi
+
+    git ls-files --other --exclude-standard --directory | head -1
+    if [ $? -ne 0 ]; then
+      echo "Untracked, unignored files"
+    fi
+
+    LOCAL=$((git rev-parse @) 2>&1)
+    REMOTE=$((git rev-parse @{u}) 2>&1)
+    BASE=$((git merge-base @ @{u}) 2>&1)
+    MASTERPOINT=$((git merge-base @ origin/master) 2>&1)
+    MASTER=$((git rev-parse origin/master) 2>&1)
+
+    if [ $? -ne 0 ]; then
+      echo "No tracking branch"
+    elif [ $LOCAL = $REMOTE ]; then
+      echo "Up to date"
+    elif [ $LOCAL = $BASE ]; then
+      echo "Behind"
+    elif [ $REMOTE = $BASE ]; then
+      echo "Ahead"
+    fi
+
+    if [ $MASTERPOINT != $MASTER ]; then
+      echo "Needs rebased"
+    fi
+
+    echo ""
+  fi
+done
+
+sleep 60
+done
