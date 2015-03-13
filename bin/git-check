@@ -7,7 +7,12 @@ while [ 1 -ne 0 ]; do
     cd $d
     if [ -d "./.git" ]; then
       git fetch >> /dev/null
-      TEMP+="\e[1m$d \e[0m \n"
+      IFS='/' read -a array <<< "$d"
+      DIR="${array[-1]}"
+
+      TEMP+="\e[1m$DIR \e[0m"
+      TEMP+=$(git branch | grep "*")
+      TEMP+="\n"
 
       git diff --exit-code >> /dev/null
       if [ $? -ne 0 ]; then
