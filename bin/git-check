@@ -1,51 +1,54 @@
 #!/bin/bash
 while [ 1 -ne 0 ]; do
 
+  TEMP=""
+  echo $TEMP
+  for d in ~/dev/*/; do
+    cd $d
+    if [ -d "./.git" ]; then
+      git fetch >> /dev/null
+      TEMP+="\e[1m$d \e[0m \n"
+
+      git diff --exit-code >> /dev/null
+      if [ $? -ne 0 ]; then
+        TEMP+="Unstaged changes\n"
+      fi
+
+      git diff --cached --exit-code >> /dev/null
+      if [ $? -ne 0 ]; then
+        TEMP+="Staged, uncommited changes\n"
+      fi
+
+      git ls-files --other --exclude-standard --directory | head -1
+      if [ $? -ne 0 ]; then
+        TEMP+="Untracked, unignored files\n"
+      fi
+
+      LOCAL=$((git rev-parse @) 2>&1)
+      REMOTE=$((git rev-parse @{u}) 2>&1)
+      BASE=$((git merge-base @ @{u}) 2>&1)
+      MASTERPOINT=$((git merge-base @ origin/master) 2>&1)
+      MASTER=$((git rev-parse origin/master) 2>&1)
+
+      if [ $? -ne 0 ]; then
+        TEMP+="No tracking branch\n"
+      elif [ $LOCAL = $REMOTE ]; then
+        TEMP+="Up to date\n"
+      elif [ $LOCAL = $BASE ]; then
+        TEMP+="Behind\n"
+      elif [ $REMOTE = $BASE ]; then
+        TEMP+="Ahead\n"
+      fi
+  
+      if [ $MASTERPOINT != $MASTER ]; then
+        TEMP+="Needs rebased\n"
+      fi
+
+      TEMP+="\n"
+    fi
+  done
+
 clear
-for d in ~/dev/*/; do
-  cd $d
-  if [ -d "./.git" ]; then
-    git fetch >> /dev/null
-    git diff --exit-code >> /dev/null
-    echo -e "\e[1m"$d "\e[0m"
-
-    if [ $? -ne 0 ]; then
-      echo "Unstaged changes"
-    fi
-
-    git diff --cached --exit-code >> /dev/null
-    if [ $? -ne 0 ]; then
-      echo "Staged, uncommited changes"
-    fi
-
-    git ls-files --other --exclude-standard --directory | head -1
-    if [ $? -ne 0 ]; then
-      echo "Untracked, unignored files"
-    fi
-
-    LOCAL=$((git rev-parse @) 2>&1)
-    REMOTE=$((git rev-parse @{u}) 2>&1)
-    BASE=$((git merge-base @ @{u}) 2>&1)
-    MASTERPOINT=$((git merge-base @ origin/master) 2>&1)
-    MASTER=$((git rev-parse origin/master) 2>&1)
-
-    if [ $? -ne 0 ]; then
-      echo "No tracking branch"
-    elif [ $LOCAL = $REMOTE ]; then
-      echo "Up to date"
-    elif [ $LOCAL = $BASE ]; then
-      echo "Behind"
-    elif [ $REMOTE = $BASE ]; then
-      echo "Ahead"
-    fi
-
-    if [ $MASTERPOINT != $MASTER ]; then
-      echo "Needs rebased"
-    fi
-
-    echo ""
-  fi
-done
-
-sleep 60
+echo -e "$TEMP"
+sleep 30
 done
