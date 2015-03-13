@@ -57,5 +57,6 @@ while [ 1 -ne 0 ]; do
 
 clear
 echo -e "$TEMP"
-sleep 10
+read -t 30
+echo "Updating..."
 done
