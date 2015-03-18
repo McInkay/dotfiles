@@ -1,32 +1,90 @@
 #!/bin/bash
+
+# Some variables to start off
+VW=$(tput cols)
+PDIR=$1
+
+function echoBranch {
+  if [ -z ${2+x} ]; then
+    ARGS+="%s\n"
+    TEMP+=("$1")
+  else
+    # Work out how wide we want for right aligning the branch name
+    WIDTH=$((VW-${#1}))
+
+    # This is the really weird way we have to right align things
+    ARGS+="%s%"$WIDTH"s\n"
+    TEMP+=("$1" "$2")  
+  fi
+}
+
+
+function echoBranchMaybe {
+  if [ $i -lt $length ]; then
+    echoBranch "$1" "${BRANCHES[$i]}"
+    i=$(($i+1))
+  else
+    echoBranch "$1"
+  fi
+}
+
+
+if [ ! -d "$PDIR" ]; then
+  printf "%s\n" "No directory, or non-existanct directory specified. Using ~/dev/. Press any key to continue."
+  PDIR=$HOME"/dev/"
+  read
+fi
+
+printf "Gathering information."
+
+# Loop. Forever.
 while [ 1 -ne 0 ]; do
 
-  TEMP=""
-  echo $TEMP
-  for d in ~/dev/*/; do
+  # To do things nicely, we have a string of arguments for printf
+  # and an array of strings that it will deal with
+  ARGS=""
+  TEMP=()
+ 
+  # Loop through directories in the parent directory
+  for d in $PDIR/*/; do
     cd $d
+    # Only do stuff if we have a .git directory, otherwise bad things
     if [ -d "./.git" ]; then
+
+      # Let's update the remotes, otherwise half this script is pointless
       git fetch >> /dev/null
+
+      # Split up the directory path, and get the final one (directory name)
       IFS='/' read -a array <<< "$d"
       DIR="${array[-1]}"
 
-      TEMP+="\e[1m$DIR \e[0m"
-      TEMP+=$(git branch | grep "*")
-      TEMP+="\n"
+      # Make the repo name and checked out branch bold
+      ARGS+="\e[1m"
+      echoBranch $DIR "$(git branch | grep '*')"
+      ARGS+="\e[0m" # And revert boldness
+
+      # Let's get the other branch names (because I like my local branches to be clean)
+      BRANCHES=()
+      eval "$(git for-each-ref --shell --format='if [[ "%(HEAD)" != *"*"* ]]; then BRANCHES+=(%(refname:short)); fi' refs/heads/)"
+      length=${#BRANCHES[@]}
+      i=0
 
       git diff --exit-code >> /dev/null
       if [ $? -ne 0 ]; then
-        TEMP+="Unstaged changes\n"
+        ARGS+="%s"
+        TEMP+=("Unstaged changes")
       fi
 
       git diff --cached --exit-code >> /dev/null
       if [ $? -ne 0 ]; then
-        TEMP+="Staged, uncommited changes\n"
+        ARGS+="%s\n"
+        TEMP+=("Staged, uncommited changes")
       fi
 
       git ls-files --other --exclude-standard --directory | head -1
       if [ $? -ne 0 ]; then
-        TEMP+="Untracked, unignored files\n"
+        ARGS+="%s\n"
+        TEMP+=("Untracked, unignored files")
       fi
 
       LOCAL=$((git rev-parse @) 2>&1)
@@ -36,27 +94,31 @@ while [ 1 -ne 0 ]; do
       BASE=$((git merge-base @ @{u}) 2>&1)
 
       if [ $? -ne 0 ]; then
-        TEMP+="No tracking branch\n"
+        echoBranchMaybe "No tracking branch"
       elif [ $LOCAL = $REMOTE ]; then
-        TEMP+="Up to date\n"
+        echoBranchMaybe "Up to date"
       elif [ $LOCAL = $BASE ]; then
-        TEMP+="Behind\n"
+        echoBranchMaybe "Behind"
       elif [ $REMOTE = $BASE ]; then
-        TEMP+="Ahead\n"
+        echoBranchMaybe "Ahead"
       else
-        TEMP+="Diverged\n"
+        echoBranchMaybe "Diverged"
       fi
   
       if [ $MASTERPOINT != $MASTER ]; then
-        TEMP+="Needs rebased\n"
+        echoBranchMaybe "Needs rebased"
       fi
 
-      TEMP+="\n"
+      while [ $i -lt $length ]; do
+        echoBranchMaybe ""
+      done
+
+      ARGS+="\n"
     fi
   done
 
 clear
-echo -e "$TEMP"
+printf "$ARGS" "${TEMP[@]}"
 read -t 30
-echo "Updating..."
+printf "Updating..."
 done

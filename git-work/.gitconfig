@@ -1,11 +1,17 @@
 [user]
 	name = Alistair McKinlay
+	email = "alistair@10people.co.uk"
 
 [alias]
 	cob = checkout -b
+	b = branch
 	c = commit -m
+	s = status
+	d = branch -d
+	p = push -u origin
         a = !git add -u && git status
         aa = !git add -u && git add . && git status
 	up = !git fetch && git rebase origin/master
-	k = !git fetch && gitk
-	s = status
+	k = !git fetch && gitk --all
+[push]
+	default = simple
