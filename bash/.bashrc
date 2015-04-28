@@ -27,6 +27,7 @@ npm config set https-proxy http://localhost:3128
 
 source git-prompt
 USER="\u"
+HOST="\H"
 TIME="\t"
 DIR="\[$BOLD\]\W\[$NORMAL\]"
 SEPERATOR="\[$BOLD\]\$\[$NORMAL\]"
@@ -41,7 +42,7 @@ function git_color {
   fi
 }
 
-PS1="$TIME $DIR"
+PS1="$HOST $DIR"
 PS1+="\[\$(git_color)\]"
 PS1+="\$(__git_ps1) "
 PS1+="\[$NORMAL\]"
