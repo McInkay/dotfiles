@@ -9,6 +9,7 @@
 	col = checkout -
 	b = branch
 	c = commit -m
+	cm = commit --amend --no-edit
 	s = status
 	d = branch -d
 	dd = branch -D
