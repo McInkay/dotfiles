@@ -4,10 +4,14 @@
 
 [alias]
 	cob = checkout -b
+	co = checkout
+	com = checkout master
+	col = checkout -
 	b = branch
 	c = commit -m
 	s = status
 	d = branch -d
+	dd = branch -D
 	p = push -u origin
         a = !git add -u && git status
         aa = !git add -u && git add . && git status
