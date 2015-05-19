@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Some variables to start off
+VW=$(tput cols)
+PDIR=`pwd`
+
+function shutdown() {
+  PGID=$(ps -o pgid= $$ | grep -o [0-9]*)
+  setsid kill -- -$PGID
+  exit 0
+}
+
+trap "shutdown" SIGINT SIGTERM
+
+function run_command {
+  DIR=$1
+  shift
+  $* >/dev/null 2>&1
+
+  if [ "$?" -eq "0" ]; then
+    echo -n `basename $DIR`
+    echo ": success"
+  else
+    echo -n `basename $DIR`
+    echo ": failed"
+  fi
+}
+
+
+echo "Building projects..."
+
+# Loop through directories in the parent directory
+for d in $PDIR/*/; do
+  cd $d
+
+  # If we are a maven directory
+  if [ -a "./pom.xml" ]; then
+    run_command $d mvn clean install &
+  fi
+
+  if [ -a "./Gruntfile.js" ]; then
+    run_command $d grunt clean release &
+  fi
+done
+
+wait
+echo "Done"
