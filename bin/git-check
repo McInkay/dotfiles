@@ -2,7 +2,7 @@
 
 # Some variables to start off
 VW=$(tput cols)
-PDIR=$1
+PDIR="$1"
 
 function echoBranch {
   # This function takes a string to print, and an optional branch name to print.
@@ -132,7 +132,7 @@ while [ 1 -ne 0 ]; do
         echoBranchMaybe "Diverged"
       fi
   
-      if [ $MASTERPOINT != $MASTER ]; then
+      if [ "$MASTERPOINT" != "$MASTER" ]; then
         # Master is further ahead than where we branched off, rebasing is necessary.
         echoBranchMaybe "Needs rebased"
       fi
