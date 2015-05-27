@@ -41,9 +41,7 @@ function echoBranchMaybe {
 
 
 if [ ! -d "$PDIR" ]; then
-  printf "%s\n" "No directory, or non-existanct directory specified. Using ~/dev/. Press any key to continue."
-  PDIR=$HOME"/dev/"
-  read
+  PDIR="$(pwd)"
 fi
 
 printf "Gathering information."
