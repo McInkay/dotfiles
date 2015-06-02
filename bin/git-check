@@ -53,17 +53,20 @@ while [ 1 -ne 0 ]; do
 
   # To do things nicely, we have a string of arguments for printf
   # and an array of strings that it will deal with
-  ARGS=""
-  TEMP=()
+  ARGSFULL=""
+  TEMPFULL=()
  
   # Loop through directories in the parent directory
   for d in $PDIR/*/; do
+    ARGS=""
+    TEMP=()
+    PRINTING=false
     cd $d
     # Only do stuff if we have a .git directory, otherwise bad things
     if [ -d "./.git" ]; then
 
       # Let's update the remotes, otherwise half this script is pointless
-      git fetch &> /dev/null
+      git fetch -p &> /dev/null
 
       # Split up the directory path, and get the final one (directory name)
       IFS='/' read -a array <<< "$d"
@@ -80,18 +83,24 @@ while [ 1 -ne 0 ]; do
       length=${#BRANCHES[@]}
       i=0
 
+      if [ "$length" -gt "0" ]; then
+        PRINTING=true
+      fi
+
       git diff --exit-code &> /dev/null
       if [ $? -ne 0 ]; then
+        PRINTING=true
         echoBranchMaybe "Unstaged changes"
       fi
 
       git diff --cached --exit-code &> /dev/null
       if [ $? -ne 0 ]; then
+        PRINTING=true
         echoBranchMaybe "Staged, uncommited changes"
       fi
 
-      git ls-files --other --exclude-standard --directory | head -1 &> /dev/null
-      if [ $? -ne 0 ]; then
+      if [[ $(git ls-files --other --exclude-standard --directory | head -1) ]]; then
+        PRINTING=true
         echoBranchMaybe "Untracked, unignored files"
       fi
 
@@ -112,6 +121,7 @@ while [ 1 -ne 0 ]; do
         # This just means there was an error with the last one.
         # AFAIK, this is only when there is no tracking branch
         echoBranchMaybe "No tracking branch"
+        PRINTING=true
 
       elif [ $LOCAL = $REMOTE ]; then
         # The local and master branches are at the same point
@@ -120,19 +130,23 @@ while [ 1 -ne 0 ]; do
       elif [ $LOCAL = $BASE ]; then
         # Local branch isn't up to date with remote, but is still on the same line
         echoBranchMaybe "Behind"
+        PRINTING=true
 
       elif [ $REMOTE = $BASE ]; then
         # Remote isn't up to date with local, but is still on the same line
         echoBranchMaybe "Ahead"
+        PRINTING=true
 
       else
         # We have diverged somewhere
         echoBranchMaybe "Diverged"
+        PRINTING=true
       fi
   
       if [ "$MASTERPOINT" != "$MASTER" ]; then
         # Master is further ahead than where we branched off, rebasing is necessary.
         echoBranchMaybe "Needs rebased"
+        PRINTING=true
       fi
 
       while [ $i -lt $length ]; do
@@ -142,11 +156,16 @@ while [ 1 -ne 0 ]; do
       done
 
       ARGS+="\n"
+
+      if [ "$PRINTING" = true ]; then
+        ARGSFULL+="$ARGS"
+        TEMPFULL=("${TEMPFULL[@]}" "${TEMP[@]}")
+      fi
     fi
   done
 
 clear
-printf "$ARGS" "${TEMP[@]}"
+printf "$ARGSFULL" "${TEMPFULL[@]}"
 
 # This allows us to refresh the information without having to wait for the timeout.
 read -t 30
