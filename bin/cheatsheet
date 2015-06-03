@@ -1,19 +1,34 @@
 #!/bin/bash
 
 source bash-colours.sh
+VW=$(tput cols)
 clear
 
-echo -e "${BWHITE}Cheatsheet for quickly viewing commands.${RESET}"
+printf "${BWHITE}Cheatsheet for quickly viewing commands.${RESET}\n"
 echo ""
 echo ""
 
 echo -e "${BWHITE}Git aliases:${RESET}"
 echo ""
 
-git config --get-regex alias | awk -F='\n' '{print substr($1, 7)}' | sed "s/ /\\`printf '\n%10s'`/"
+IFS=$'\n'
+arr=($(git config --get-regex alias | awk -F='\n' '{print substr($1, 7)}' | sed $'s/ \{1,\}/\\\n/'))
 
-echo ""
-echo -e "${BWHITE}Commands: $RESET"
+COUNT=1
+for i in "${arr[@]}"
+do
+  if (( $COUNT % 2 == 0 )); then
+    printf "%"$WIDTH"s\n" "$i"
+  else
+    WIDTH=$((VW-${#i}))
+    printf "%s" "$i"
+  fi
+  ((COUNT++))
+done
+
+
+echo " "
+printf "\n${BWHITE}%s$RESET\n" "Commands: "
 
 find ~/.dotfiles/bin -maxdepth 1 -type f -printf "%f\n"
 for d in ~/.dotfiles/bin/*/; do
