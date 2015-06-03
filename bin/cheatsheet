@@ -1,4 +1,7 @@
 #!/bin/bash
+shopt -s expand_aliases
+source ~/.bashrc
+source ~/.bash_profile
 
 source bash-colours.sh
 VW=$(tput cols)
@@ -26,8 +29,27 @@ do
   ((COUNT++))
 done
 
-
 echo " "
+printf "${BWHITE}%s$RESET\n" "Bash Aliases:"
+BASHES=($(alias | sed s/alias\ // | sed $'s/\'//g' | sed $'s/\=/\\\n/'))
+COUNT=1
+for i in "${BASHES[@]}"
+do
+  if (( $COUNT % 2 == 0 )); then
+    if (( ${#i} > $WIDTH )); then
+      printf "\n\t%s\n" "$i"
+    else
+      printf "%"$WIDTH"s\n" "$i"
+    fi
+  else
+    WIDTH=$((VW-${#i}))
+    printf "%s" "$i"
+  fi
+  ((COUNT++))
+done
+
+
+
 printf "\n${BWHITE}%s$RESET\n" "Commands: "
 
 find ~/.dotfiles/bin -maxdepth 1 -type f -printf "%f\n"
