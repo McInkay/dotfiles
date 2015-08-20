@@ -78,7 +78,7 @@ layouts =
  }
  for s = 1, screen.count() do
      -- Each screen has its own tag table.
-     tags[s] = awful.tag(tags.names, s)
+     tags[s] = awful.tag(tags.names, s, awful.layout.suit.tile)
  end
  -- }}}
 
