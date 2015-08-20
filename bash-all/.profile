@@ -5,3 +5,4 @@ for d in ~/.dotfiles/bin/*/; do
   PATH="$d:$PATH"
 done
 
+setxkbmap gb

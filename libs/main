@@ -1,3 +1,5 @@
+setxkbmap gb
+
 # .bashrc
 
 GREEN="\033[1;32m"
