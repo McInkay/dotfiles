@@ -55,16 +55,15 @@ while [ 1 -ne 0 ]; do
   # and an array of strings that it will deal with
   ARGSFULL=""
   TEMPFULL=()
- 
+
   # Loop through directories in the parent directory
-  for d in $PDIR/*/; do
+  for d in $PDIR/*/ $PDIR/.*/; do
     ARGS=""
     TEMP=()
     PRINTING=false
     cd $d
     # Only do stuff if we have a .git directory, otherwise bad things
     if [ -d "./.git" ]; then
-
       # Let's update the remotes, otherwise half this script is pointless
       git fetch -p &> /dev/null
 
