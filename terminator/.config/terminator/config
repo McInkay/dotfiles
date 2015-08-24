@@ -6,6 +6,7 @@
 [profiles]
   [[default]]
     use_system_font = False
+    font = Courier 10 Pitch 10
     background_type = transparent
     background_image = None
 [layouts]
