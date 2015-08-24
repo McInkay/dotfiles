@@ -61,9 +61,9 @@ while [ 1 -ne 0 ]; do
     ARGS=""
     TEMP=()
     PRINTING=false
-    cd $d
+    cd $d &>/dev/null
     # Only do stuff if we have a .git directory, otherwise bad things
-    if [ -d "./.git" ]; then
+    if [ $? -eq 0 ] && [ -d "./.git" ]; then
       # Let's update the remotes, otherwise half this script is pointless
       git fetch -p &> /dev/null
 
