@@ -14,6 +14,7 @@
 	d = branch -d
 	dd = branch -D
 	p = push -u origin
+	pp = !git push --set-upstream origin `git symbolic-ref --short HEAD`
         a = !git add -u && git status
         aa = !git add -u && git add . && git status
 	up = !git fetch && git rebase origin/master
