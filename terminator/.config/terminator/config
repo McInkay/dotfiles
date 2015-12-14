@@ -1,5 +1,4 @@
 [global_config]
-  suppress_multiple_term_dialog = True
   focus = mouse
   tab_position = hidden
 [keybindings]
@@ -45,7 +44,7 @@
       parent = child2
     [[[terminal4]]]
       profile = default
-      command = watch --color -t -n 5 cheatsheet
+      command = while true; do cheatsheet; sleep 30; done
       type = Terminal
       order = 1
       parent = child2
@@ -63,7 +62,7 @@
       parent = child5
     [[[terminal8]]]
       profile = default
-      command = git-check
+      command = git-check /cygdrive/c/dev/
       type = Terminal
       order = 1
       parent = child6
