@@ -1,0 +1,15 @@
+export EDITOR=nano
+
+## Colours
+export GREEN="\033[1;32m"
+export RED="\033[1;31m"
+export BOLD="\033[1;37m"
+export NORMAL="\033[0m"
+
+## Java
+#export JAVA_HOME=/usr/lib/jvm/java-1.8.0
+
+## Proxies
+export http_proxy=http://localhost:3128
+export https_proxy=http://localhost:3128
+
