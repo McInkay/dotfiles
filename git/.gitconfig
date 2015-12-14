@@ -2,6 +2,9 @@
 	name = Alistair McKinlay
 	email = "alistair@10people.co.uk"
 
+[core]
+	autocrlf = true
+
 [alias]
 	cob = checkout -b
 	co = checkout
@@ -15,9 +18,11 @@
 	dd = branch -D
 	p = push -u origin
 	pp = !git push --set-upstream origin `git symbolic-ref --short HEAD`
-        a = !git add -u && git status
-        aa = !git add -u && git add . && git status
+	a = !git add -u && git status
+	aa = !git add -u && git add . && git status
 	up = !git fetch && git rebase origin/master
 	k = !git fetch && gitk --all
 [push]
 	default = simple
+[init]
+  templatedir = ~/.git-templates

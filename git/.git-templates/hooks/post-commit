@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo "Commited, I hope you ran your tests."
