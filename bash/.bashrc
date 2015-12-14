@@ -4,8 +4,8 @@ if [ -f /etc/bashrc ]; then
 fi
 
 export DISPLAY=:0.0
-source ~/.dotfiles/bin/env_variables
-source ~/.dotfiles/bin/functions
-source ~/.dotfiles/bin/bash-prompt
+. ~/.dotfiles/bin/libs/env_variables
+. ~/.dotfiles/bin/libs/functions
+. ~/.dotfiles/bin/libs/bash-prompt
 
 setxkbmap gb

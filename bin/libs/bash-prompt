@@ -1,4 +1,4 @@
-source ~/.dotfiles/bin/git-prompt
+. ~/.dotfiles/bin/libs/git-prompt
 
 USER="\u"
 HOST="\H"
