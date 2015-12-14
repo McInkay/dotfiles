@@ -15,9 +15,7 @@
  ░░░░░░░░░░
 
  awesome        > awesome wm config and ghost theme
- bash-all       > bash config files for all
- bash-no-proxy  > bash config files for when using no proxy
- bash-proxy     > bash config files for when using a proxy
+ bash           > bash config files
  bin            > scripts (will be added to path when used with the bash_profile)
  bin/fun        > term color, sys info, and other misc scripts
  fonts          > config for gohu and bitmap fonts
