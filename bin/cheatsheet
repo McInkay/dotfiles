@@ -1,4 +1,6 @@
 #!/bin/bash
+while true
+do
 shopt -s expand_aliases
 source ~/.bashrc
 source ~/.bash_profile
@@ -21,7 +23,7 @@ COUNT=1
 for i in "${arr[@]}"
 do
   if (( $COUNT % 2 == 0 )); then
-    printf "%"$WIDTH"s\n" "$i"
+    printf "%"$WIDTH"s" "$i"
   else
     WIDTH=$((VW-${#i}))
     printf "%s" "$i"
@@ -58,4 +60,5 @@ for d in ~/.dotfiles/bin/*/; do
   echo -e "${BWHITE}${d}:${RESET}"
   find $d -maxdepth 1 -type f -printf "%f\n"
 done
-
+sleep 10000
+done
