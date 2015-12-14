@@ -1,0 +1,43 @@
+#!/bin/bash
+
+
+################################################
+# Override cd, and send all output to /dev/null
+################################################
+function cd() {  
+  if [ -z "$*" ]; then
+    destination=~
+  else
+    destination=$*
+  fi
+  builtin cd "${destination}" >/dev/null
+}
+
+################################################
+# Runs a command and outputs success or failure
+################################################
+function run_command {
+  DIR=$1
+  shift
+  "$@" >/dev/null 2>&1
+
+  echo -n "$(basename "$DIR")"
+  if [ "$?" -eq "0" ]; then
+    echo ": success"
+  else
+    echo ": failed"
+  fi
+}
+
+################################################
+# Changes output colour based on git status
+# (Requires $RED and $GREEN to be set)
+################################################
+function git_color {
+  local git_status="$(git status 2> /dev/null)"
+  if [[ ! $git_status =~ "working directory clean" ]]; then
+    echo -e $RED
+  else
+    echo -r $GREEN
+  fi
+}
