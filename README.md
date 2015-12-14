@@ -10,34 +10,25 @@
  
   ▓▓▓▓▓▓▓▓▓▓
  ░▓ about  ▓ custom linux config files
- ░▓ author ▓ xero <x@xero.nu>
- ░▓ code   ▓ http://code.xero.nu/dotfiles
- ░▓ mirror ▓ http://git.io/.files
+ ░▓ author ▓ YaManicKill (forked from http://code.xero.nu/dotfiles)
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
  awesome        > awesome wm config and ghost theme
- compton        > minimal composite config for opacity
- fun            > term color, sys info, and other misc scripts
- sys            > system automation scripts
+ bash-all       > bash config files for all
+ bash-no-proxy  > bash config files for when using no proxy
+ bash-proxy     > bash config files for when using a proxy
+ bin            > scripts (will be added to path when used with the bash_profile)
+ bin/fun        > term color, sys info, and other misc scripts
  fonts          > config for gohu and bitmap fonts
- figlet         > custom 3d font
  git            > global git config and aliases
- herbstluftwm   > herbstluft wm config and greybeard theme
- irssi          > irc monokai theme
- mc             > midnight commander ui colors
- mpd            > music player daemon setup
- ncmpcpp        > ncurses mpc++ ui/color settings
+ libs           > a few libraries used by other things
  pacman         > pacman colors and progress bar animations
- ranger         > file manager with image previews and z3bra theme
- ryu-login      > ryu ansi art for /etc/issue tty login
  ssh            > remote ssh server keep alive
- stalonetray    > stand alone tray for daemons
- sublime        > sublime text 2 with greybeard, monokai, and gohu
+ terminator     > terminal emulator with split-screen
  themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > minimal terminal multiplexer setup
  vim            > vim custom airline bar, colors, and plugins
- urxvt          > urxvt terminal colors and keyboard settings
  wallpaper      > the cool desktop background images i use
  zsh            > zshell settings, aliases, and custom prompts
 ```
@@ -81,45 +72,21 @@ navigate to your home directory
 
 clone the repo:
 
-`git clone http://git.xero.nu/dotfiles.git`
+`git clone https://github.com/YaManicKill/dotfiles .dotfiles`
 
 enter the dotfiles directory
 
-`cd dotfiles`
+`cd .dotfiles`
 
-install the zsh settings
+install the bash settings
 
-`stow zsh`
+`stow bash-all`
+`stow bash-no-proxy`
 
-install zsh settings for the root user
+install terminator settings
 
-`sudo stow zsh -t /root`
+`stow terminator`
 
-install awesomewm theme
+uninstall terminator settings
 
-`stow awesome`
-
-uninstall awesome theme
-
-`stow -D awesome`
-
-install herbstluftwm
-
-`stow herbstluftwm`
-
-#previews
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-1.png)
-- [sysinfo](http://git.io/.sysinfo)
-- [urxvt](http://git.io/.urxvt)
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-2.png)
-- [sublime greybeard theme](http://git.io/sublimegreybeard)
-- [ncmpcpp](http://git.io/.ncmpcpp)
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-3.png)
-- [chroimum with cathexis gtk](http://git.io/cathexis) & [greybeard devtools](http://git.io/greybeard-devtools)
-- figlet [-f 3d](http://git.io/3d) webdev | lolcat
-
-![](https://raw.githubusercontent.com/xero/dotfiles/master/previews/scrot_nightcity-4.png)
-- [irssi](http://git.io/.irssi)
-- [tmux](http://git.io/.tmux)
+`stow -D terminator`
