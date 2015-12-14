@@ -1,0 +1,23 @@
+#!/bin/bash
+
+changed_files="$(git diff-tree -r --name-only ORIG_HEAD HEAD)"
+
+function run_if_changed() {
+  echo "$changed_files" | grep -E --quiet "$1" && eval "$2"
+}
+
+# Node project
+if [ -a "./package.json" ]; then
+  # Update node dependencies if package.json has changed
+  run_if_changed package.json "npm install && npm prune"
+fi
+
+# Maven project
+if [ -a "./pom.xml" ]; then
+  mvn clean install
+fi
+
+# Grunt project
+if [ -a "./Gruntfile.js" ]; then
+  grunt
+fi
