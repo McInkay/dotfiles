@@ -1,6 +1,6 @@
 #!/bin/bash
 TM_STATE=/tmp/tm-state
-WIN=$(wmctrl -lGx | grep -i terminator | awk '{print $1}');
+WIN=$(wmctrl -lGx | grep -i "terminator.Terminator" | awk '{print $1}');
 if [[ $WIN == "" ]]
 then
   terminator&
