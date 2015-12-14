@@ -4,66 +4,55 @@
 [keybindings]
 [profiles]
   [[default]]
+    background_darkness = 0.0
     use_system_font = False
-    font = Courier 10 Pitch 10
-    background_type = transparent
+    font = Droid Sans Mono 11
     background_image = None
 [layouts]
   [[default]]
     [[[child0]]]
-      position = 539:15
+      position = 1920:0
       type = Window
       order = 0
       parent = ""
-      size = 1272, 585
+      size = 1920, 1048
     [[[child1]]]
-      position = 596
+      position = 527
       type = HPaned
       order = 0
       parent = child0
-    [[[child2]]]
-      position = 307
-      type = HPaned
-      order = 0
-      parent = child1
-    [[[child5]]]
-      position = 298
+    [[[child3]]]
+      position = 529
       type = VPaned
       order = 1
       parent = child1
-    [[[child6]]]
-      position = 350
+    [[[child4]]]
+      position = 716
       type = HPaned
       order = 0
-      parent = child5
-    [[[terminal3]]]
+      parent = child3
+    [[[terminal2]]]
       profile = default
-      command = top
+      command = cheatsheet
       type = Terminal
       order = 0
-      parent = child2
-    [[[terminal4]]]
+      parent = child1
+    [[[terminal5]]]
       profile = default
-      command = while true; do cheatsheet; sleep 30; done
+      command = ""
       type = Terminal
-      order = 1
-      parent = child2
+      order = 0
+      parent = child4
     [[[terminal7]]]
       profile = default
-      type = Terminal
-      order = 0
-      parent = child6
-      command = ""
-    [[[terminal9]]]
-      profile = default
       command = ""
       type = Terminal
       order = 1
-      parent = child5
-    [[[terminal8]]]
+      parent = child3
+    [[[terminal6]]]
       profile = default
-      command = git-check /cygdrive/c/dev/
       type = Terminal
       order = 1
-      parent = child6
+      parent = child4
+      command = git-check ~/dev/
 [plugins]
