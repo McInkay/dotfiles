@@ -38,6 +38,6 @@ function git_color {
   if [[ ! $git_status =~ "working directory clean" ]]; then
     echo -e $RED
   else
-    echo -r $GREEN
+    echo -e $GREEN
   fi
 }
