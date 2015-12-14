@@ -18,7 +18,7 @@ function echoBranch {
     WIDTH=$((VW-${#1}))
 
     # This is the really weird way we have to right align things
-    ARGS+="%s%"$WIDTH"s\n"
+    ARGS+="%s%"$WIDTH"s"
     TEMP+=("$1" "$2")  
   fi
 }
@@ -142,8 +142,8 @@ while [ 1 -ne 0 ]; do
         PRINTING=true
       fi
   
-      if [ "$MASTERPOINT" != "$MASTER" ]; then
-        # Master is further ahead than where we branched off, rebasing is necessary.
+      if [ "$MASTERPOINT" != "$MASTER" ] && [ "$MASTERPOINT" != "$LOCAL" ]; then
+        # Master is further ahead than where we branched off (and we aren't on master), rebasing is necessary.
         echoBranchMaybe "Needs rebased"
         PRINTING=true
       fi
