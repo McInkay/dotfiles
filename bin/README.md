@@ -2,6 +2,8 @@ This is for anything that can be run standalone, or just anything that should be
 If you use the bash_profile included, everything in this directory and it's subdirectories will be included
 on your path.
 
+# Scripts
+
 ## bash-prompt
 
 File for my bash prompt. It gets included by bashrc, but this was the easiest way to include it.
@@ -28,15 +30,7 @@ For obvious reasons.
 
 ## functions
 
-Just some bash functions that I find handy and use in multiple places. 
-
-#### cd
-
-Overrides cd and sends all output to /dev/null. Handy for bash scripts so we don't get the output when we cd.
-
-#### run_function
-
-Runs a function and sends all output to /dev/null. USeful if you are spawning off a lot of processes in a script
+Just some bash functions that I find handy and use in multiple places.
 
 ## git-check
 
@@ -52,6 +46,8 @@ Just a library function that prints out the current branch, used for bash-prompt
 ## terminator.sh
 
 Used to show/hide terminator when run. Useful for adding to a keycombination.
+
+# Directories
 
 ## fun
 
