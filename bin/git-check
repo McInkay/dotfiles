@@ -103,6 +103,15 @@ while [ 1 -ne 0 ]; do
         echoBranchMaybe "Untracked, unignored files"
       fi
 
+      # Let's check if we have master locally
+      git rev-parse master &> /dev/null
+
+      if [ $? -ne 0 ]; then
+        HAVEMASTER=false
+      else
+        HAVEMASTER=true
+      fi
+
       # Now we are going to get a bunch of hashes for commits at different points
 
       # The latest commit on this branch
@@ -141,8 +150,9 @@ while [ 1 -ne 0 ]; do
         echoBranchMaybe "Diverged"
         PRINTING=true
       fi
-  
-      if [ "$MASTERPOINT" != "$MASTER" ] && [ "$MASTERPOINT" != "$LOCAL" ]; then
+
+      if [ "$MASTERPOINT" != "$MASTER" ] && [ "$MASTERPOINT" != "$LOCAL" ] && 
+[ "$HAVEMASTER" = true ]; then
         # Master is further ahead than where we branched off (and we aren't on master), rebasing is necessary.
         echoBranchMaybe "Needs rebased"
         PRINTING=true
