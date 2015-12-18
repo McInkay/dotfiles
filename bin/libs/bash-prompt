@@ -7,7 +7,7 @@ DIR="\[$BOLD\]\W\[$NORMAL\]"
 SEPERATOR="\[$BOLD\]\$\[$NORMAL\]"
 
 PS1="$HOST $DIR"
-PS1+="\[$(git_color)\]"
+PS1+="\[\$(git_color)\]"
 PS1+="\$(__git_ps1) "
 PS1+="\[$NORMAL\]"
 PS1+="$SEPERATOR "
