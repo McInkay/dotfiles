@@ -25,3 +25,11 @@ function callback(a, b) {
 
 var x = 1, y = 2;
 document.getElementById('someelem').addEventListener('click', callback(x, y));
+
+// Or with bind
+
+var alertText = function(text) {
+  alert(text);
+};
+
+document.getElementById('someelem').addEventListener('click', alertText.bind(this, 'hello'));
