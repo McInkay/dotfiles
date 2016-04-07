@@ -3,7 +3,9 @@
   focus = mouse
   hide_from_taskbar = True
   tab_position = hidden
-  window_state = maximise
+  handle_size = 2
+  suppress_multiple_term_dialog = True
+  window_state = fullscreen
 [keybindings]
 [layouts]
   [[default]]
@@ -14,7 +16,8 @@
       maximised = True
       order = 0
       parent = ""
-      position = 0:0
+      position = 1920:0
+      size = 1920, 1048
       type = Window
     [[[child1]]]
       order = 0
@@ -41,6 +44,7 @@
       profile = default
       type = Terminal
       uuid = 2f9993c1-049d-406c-a769-40ca685408af
+      size = 100,100
     [[[terminal5]]]
       command = ""
       order = 0
@@ -67,6 +71,10 @@
   [[default]]
     background_darkness = 0.0
     background_image = None
-    font = Droid Sans Mono 11
-    scrollback_infinite = True
     show_titlebar = False
+    exit_action = restart
+    font = Droid Sans Mono 11
+    scroll_on_output = False
+    scrollback_infinite = True
+    scrollbar_position = hidden
+    use_system_font = False
