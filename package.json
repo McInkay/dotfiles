@@ -1,0 +1,19 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "Javascript API for the trades frontend.",
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@stash.itcm.oneadr.net:7999/nexus/etrading-trades-api.git"
+  },
+  "dependencies": {
+    "async": "^2.0.0-rc.2",
+    "asyncawait": "^1.0.3",
+    "bluebird": "^3.3.4",
+    "cli-table": "^0.3.1",
+    "memwatch-next": "^0.2.10",
+    "minimist": "^1.2.0",
+    "nodegit": "^0.12.1",
+    "shelljs": "^0.6.0"
+  }
+}
