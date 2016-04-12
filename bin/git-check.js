@@ -162,45 +162,32 @@ for (let i in dirs) {
 /**
  * Run everything in 2 parallel blocks
  */
-var singlePromise = function () {
-  return new Promise(function (res, rej) {
-    async.parallel(fetchCalls, function () {
-      table = new Table({
-        colAligns: ["left", "right"],
-        colWidths: [Math.floor(VW/2)-1, Math.floor(VW/2)-1],
-        style: {'padding-left': 0, 'padding-right': 0},
-        chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': '',
-        'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': '',
-        'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': '',
-        'right': '' , 'right-mid': '' , 'middle': ' ' }
-      });
-      async.parallel(gitCalls, function (err, results) {
-        for (let i = 0; i < results.length; i++) {
-          if (results[i].length > 1) {
-            for (let j = 0; j < results[i].length; j++) {
-              table.push(results[i][j]);
-            }
-            table.push([""]);
-          }
-        }
-        process.stdout.write("\x1Bc");
-        console.log(table.toString());
-        table = undefined;
-        return res();
-      });
-    });
+console.log("Gathering info...");
+async.parallel(fetchCalls, function () {
+  table = new Table({
+    colAligns: ["left", "right"],
+    colWidths: [Math.floor(VW/2)-1, Math.floor(VW/2)-1],
+    style: {'padding-left': 0, 'padding-right': 0},
+    chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': '',
+    'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': '',
+    'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': '',
+    'right': '' , 'right-mid': '' , 'middle': ' ' }
   });
-}
-var loop = asyncAwait(function () {
-  console.log("Gathering information...");
-  while (true) {
-    await (singlePromise());
-    await (Promise.delay(1000));
-    console.log("Updating...");
-  }
+  async.parallel(gitCalls, function (err, results) {
+    for (let i = 0; i < results.length; i++) {
+      if (results[i].length > 1) {
+        for (let j = 0; j < results[i].length; j++) {
+          table.push(results[i][j]);
+        }
+        table.push([""]);
+      }
+    }
+    process.stdout.write("\x1Bc");
+    console.log(table.toString());
+    table = undefined;
+    return;
+  });
 });
-
-loop();
 
 /**
  * Useful functions
