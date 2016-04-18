@@ -5,12 +5,12 @@
 }
 
 .close{
-display:none;
+    display:none;
 }
 
 /* Compact sidebar */
 #sidebar .networks {
-    padding: 6px 2px 6px 30px;
+    padding: 6px 2px 6px 15px;
 }
 
 #sidebar .network {
@@ -18,7 +18,7 @@ display:none;
 }
 
 #sidebar .chan {
-    margin-right: 20px;
+    margin-right: 0px;
     padding: 2px 5px 4px 5px;
     width: auto;
     border-bottom: #3c485c 1px solid;
@@ -27,39 +27,38 @@ display:none;
 #sidebar .chan:before {
     display: none;
 }
+
 #sidebar .chan .badge {
     margin-top: -1px;
     right: 5px !important;
 }
-
 #sidebar .chan .close {
     top: 2px; right: -5px;
 }
 
-/* Thinner sidebar */
-#sidebar{
+
+/*Thinner sidebar*/
+#sidebar,
+#footer,
+.tse-scroll-content
+{
     width: 150px
 }
-.tse-scroll-content{
-    width: 150px
-}
+
 #main{
     left: 150px
 }
 
-#footer{
-    width:150px
-}
-
 #sidebar div.chan{
-    width:120px
+    width: 140px
 }
 
 
-/* Thinner user sidebar */
+/*Thinner user sidebar*/
 #chat .sidebar{
     width: 150px
 }
+
 #chat .chat{
     right: 150px
 }
