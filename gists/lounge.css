@@ -1,0 +1,73 @@
+/* Better CSS box */
+#user-specified-css-input {
+    font-family: monospace;
+    height: 400px;
+}
+
+.close{
+display:none;
+}
+
+/* Compact sidebar */
+#sidebar .networks {
+    padding: 6px 2px 6px 30px;
+}
+
+#sidebar .network {
+    margin-bottom: 10px;
+}
+
+#sidebar .chan {
+    margin-right: 20px;
+    padding: 2px 5px 4px 5px;
+    width: auto;
+    border-bottom: #3c485c 1px solid;
+}
+
+#sidebar .chan:before {
+    display: none;
+}
+#sidebar .chan .badge {
+    margin-top: -1px;
+    right: 5px !important;
+}
+
+#sidebar .chan .close {
+    top: 2px; right: -5px;
+}
+
+/* Thinner sidebar */
+#sidebar{
+    width: 150px
+}
+.tse-scroll-content{
+    width: 150px
+}
+#main{
+    left: 150px
+}
+
+#footer{
+    width:150px
+}
+
+#sidebar div.chan{
+    width:120px
+}
+
+
+/* Thinner user sidebar */
+#chat .sidebar{
+    width: 150px
+}
+#chat .chat{
+    right: 150px
+}
+
+/* <Nick> */
+.messages .user:before {
+    content: "<";
+}
+.messages .user:after {
+    content: ">";
+}
