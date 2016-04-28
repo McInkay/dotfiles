@@ -22,6 +22,7 @@ const dirs = ls();
 const fetchCalls = [];
 const gitCalls = [];
 let table;
+console.log("Gathering info...");
 
 for (let i in dirs) {
   cd(DIR);
@@ -32,11 +33,7 @@ for (let i in dirs) {
   }
   cd(dir);
 
-  fetchCalls.push(function (callback) {
-    exec('git fetch -p', {silent: true}, function (code, stdout, sterr) {
-      callback();
-    });
-  });
+  exec('git fetch -p', {silent: true});
 
   gitCalls.push(function (callback) {
     let dir = dirs[i];
@@ -160,33 +157,30 @@ for (let i in dirs) {
 
 
 /**
- * Run everything in 2 parallel blocks
+ * Run getting the information in parallel
  */
-console.log("Gathering info...");
-async.parallel(fetchCalls, function () {
-  table = new Table({
-    colAligns: ["left", "right"],
-    colWidths: [Math.floor(VW/2)-1, Math.floor(VW/2)-1],
-    style: {'padding-left': 0, 'padding-right': 0},
-    chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': '',
-    'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': '',
-    'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': '',
-    'right': '' , 'right-mid': '' , 'middle': ' ' }
-  });
-  async.parallel(gitCalls, function (err, results) {
-    for (let i = 0; i < results.length; i++) {
-      if (results[i].length > 1) {
-        for (let j = 0; j < results[i].length; j++) {
-          table.push(results[i][j]);
-        }
-        table.push([""]);
+table = new Table({
+  colAligns: ["left", "right"],
+  colWidths: [Math.floor(VW/2)-1, Math.floor(VW/2)-1],
+  style: {'padding-left': 0, 'padding-right': 0},
+  chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': '',
+  'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': '',
+  'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': '',
+  'right': '' , 'right-mid': '' , 'middle': ' ' }
+});
+async.parallel(gitCalls, function (err, results) {
+  for (let i = 0; i < results.length; i++) {
+    if (results[i].length > 1) {
+      for (let j = 0; j < results[i].length; j++) {
+        table.push(results[i][j]);
       }
+      table.push([""]);
     }
-    process.stdout.write("\x1Bc");
-    console.log(table.toString());
-    table = undefined;
-    return;
-  });
+  }
+  process.stdout.write("\x1Bc");
+  console.log(table.toString());
+  table = undefined;
+  return;
 });
 
 /**
@@ -197,9 +191,7 @@ function maybeAddBranch(string, branches) {
   return branches.length > 0 ? [string, branches.splice(0, 1)[0].shorthand().trim()] : [string];
 }
 
-function errorSwallower(err) {
-  errorPrinter(err);
-}
+function errorSwallower(err) {}
 
 function errorPrinter(err) {
   console.log(err);
