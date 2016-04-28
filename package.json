@@ -14,6 +14,8 @@
     "memwatch-next": "^0.2.10",
     "minimist": "^1.2.0",
     "nodegit": "^0.12.1",
+    "prompt": "^1.0.0",
+    "semver": "^5.1.0",
     "shelljs": "^0.6.0"
   }
 }

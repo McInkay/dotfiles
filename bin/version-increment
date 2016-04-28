@@ -1,0 +1,78 @@
+#!/usr/bin/env node
+'use strict';
+require('./libs/shell.js');
+const prompt = require('prompt');
+const semver = require('semver');
+const fs = require('fs');
+
+let type, getVersion, updateVersion;
+
+try {
+  fs.statSync('pom.xml');
+  type = 'MVN';
+  getVersion = function () {
+    const cmd = "mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | sed -n -e '/^\\[.*\\]/ !{ /^[0-9]/ { p; q} }'";
+    return runAndGetOutput(cmd);
+  }
+  updateVersion = function (major, minor, patch) {
+    const cmd = 'mvn versions:set -DparsedVersion.majorVersion=' + major
+      +  ' -DparsedVersion.minorVersion=' + minor
+      + ' -DparsedVersion.nextIncrementalVersion=' + patch;
+    return runAndGetOutput(cmd);
+  }
+} catch (e) {}
+
+try {
+  fs.statSync('package.json');
+  type = 'NODE';
+  getVersion = function () {
+    return runAndGetOutput('cat package.json | grep version | grep -o -e \'[0-9]*\\.[0-9]*\\.[0-9]*\'');
+  }
+  updateVersion = function (major, minor, patch) {
+    return runAndGetOutput('npm --no-git-tag-version version ' + major + '.' + minor + '.' + patch);
+  }
+} catch (e) {}
+
+if (!type) {
+  console.log('Currently only supports maven and npm');
+  process.exit(1);
+}
+
+const version = getVersion();
+console.log('Current version: ' + version);
+let major = semver.major(version);
+let minor = semver.minor(version);
+let patch = semver.patch(version);
+
+prompt.start();
+const promptSchema = {
+  properties: {
+    type: {
+      pattern: /^[mnpc]$/,
+      description: 'Bump version? Major/minor/patch/cancel (m/n/p/c)',
+      message: 'Please put m|n|p|c. m = major, n = minor, p = patch, c = cancel',
+      required: true
+    }
+  }
+}
+prompt.get(promptSchema, function (err, result) {
+  console.log('Updating...');
+  switch (result.type) {
+    case 'm':
+      major++;
+      minor = 0;
+      patch = 0;
+      break;
+    case 'n':
+      minor++;
+      patch = 0;
+      break;
+    case 'p':
+      patch++;
+      break;
+    case 'c':
+      process.exit();
+  }
+  updateVersion(major, minor, patch);
+  console.log('New version: ' + getVersion());
+});
