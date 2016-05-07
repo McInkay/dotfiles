@@ -4,6 +4,7 @@
     height: 400px;
 }
 
+/* Hide the close button in sidebar*/
 .close{
     display:none;
 }
@@ -69,4 +70,9 @@
 }
 .messages .user:after {
     content: ">";
+}
+
+/* highlight text for zenburn */
+.highlight .text{
+    color: #bb5555 !important;
 }
