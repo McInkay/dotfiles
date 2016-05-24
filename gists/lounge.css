@@ -76,3 +76,12 @@
 .highlight .text{
     color: #bb5555 !important;
 }
+
+/* remove name icon thingy */
+#nick {
+    display: none;
+}
+
+#form #input {
+    padding-left: 10px !important;
+}
