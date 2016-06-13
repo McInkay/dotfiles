@@ -25,3 +25,21 @@ function arrayInitialise() {
 
 time("Array initialise", arrayInitialise); // Outputs: Array initialize: 0.711ms
 ```
+
+## Promise sideeffect while still sending on the result
+
+```
+const sideEffect = fn => d => {
+  fn(d)
+  return d;
+};
+```
+
+Example:
+
+```
+getReposForUser('ColinEberhardt')
+  .then(sideEffect(repos => console.log(`repos returned ${repos.length}`)))
+  .then(getRepoWithMostStargazers)
+  .then(console.log)
+```
