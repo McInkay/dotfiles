@@ -1,3 +1,14 @@
+#chat .channel .highlight .text,
+#chat .channel .highlight .from {
+	color: #dcdccc !important;
+}
+
+#chat .channel .highlight .time,
+#chat .channel .highlight .from {
+	background-color: #006666;
+	border-color: #006666;
+}
+
 /* Better CSS box */
 #user-specified-css-input {
     font-family: monospace;
