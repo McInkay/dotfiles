@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 changed_files="$(git diff-tree -r --name-only ORIG_HEAD HEAD)"
 
