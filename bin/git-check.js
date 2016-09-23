@@ -45,7 +45,7 @@ for (let i in dirs) {
       .then(getBranches)
       .then(function (returnedBranches) {
         branches = returnedBranches;
-        // Print out currenct branch and directory
+        // Print out current branch and directory
         checkedOut = branches.filter(function (ref) {
           return ref.isHead();
         })[0];
@@ -188,7 +188,6 @@ async.parallel(gitCalls, function (err, results) {
   process.stdout.write("\x1Bc");
   console.log(table.toString());
   table = undefined;
-  return;
 });
 
 /**
@@ -202,6 +201,7 @@ function maybeAddBranch(string, branches) {
 function errorSwallower(err) {}
 
 function errorPrinter(err) {
+  // Easy way to print errors, set errorSwallower to call this function
   console.log(err);
 }
 
