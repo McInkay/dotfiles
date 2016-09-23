@@ -186,6 +186,9 @@ async.parallel(gitCalls, function (err, results) {
     }
   }
   process.stdout.write("\x1Bc");
+  if (table.length < 1) {
+    console.log("No changes to git repositories");
+  }
   console.log(table.toString());
   table = undefined;
 });
