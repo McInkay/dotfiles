@@ -14,21 +14,13 @@
  ░▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░
 
- awesome        > awesome wm config and ghost theme
  bash           > bash config files
  bin            > scripts (will be added to path when used with the bash_profile)
- bin/fun        > term color, sys info, and other misc scripts
- fonts          > config for gohu and bitmap fonts
+ gists          > a collection of stuff that I have come accross and are useful
  git            > global git config and aliases
- libs           > a few libraries used by other things
- pacman         > pacman colors and progress bar animations
  ssh            > remote ssh server keep alive
  terminator     > terminal emulator with split-screen
- themes         > mod of the cathexis dark theme for gtk/qt/xfce
  tmux           > minimal terminal multiplexer setup
- vim            > vim custom airline bar, colors, and plugins
- wallpaper      > the cool desktop background images i use
- zsh            > zshell settings, aliases, and custom prompts
 ```
 #managing
 it's been said of every console user: _"you are your dotfiles"_.
@@ -47,21 +39,19 @@ by default the stow command will create symlinks for files in the parent directo
 
 to install most of my configs you execute the stow command with the folder name as the only argument. 
 
-to install **herbstluft** theme use the command:
+to install the  **bash** config, use the command:
 
-`stow herbstluftwm`
+`stow bash`
 
 this will symlink files to `~/.config/herbstluftwm` and various other places.
 
-but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag. 
-
-to install the **ryu-login** you need to execute the command:
-
-`stow -t / ryu-login` 
-
-this will symlink the file to `/etc/issue`.
+but you can override the default behavior and symlink files to another location with the `-t` (target) argument flag.
 
 **note:** stow can only create a symlink if a config file does not already exist. if a default file was created upon program installation you must delete it first before you can install a new one with stow. this does not apply to directories, only files.
+
+#node modules
+
+A few of my files and libraries are node scripts, and require some node modules. To use them, just go to the .dotfiles directory and run `npm install`
 
 #tl;dr
 navigate to your home directory
@@ -76,10 +66,13 @@ enter the dotfiles directory
 
 `cd .dotfiles`
 
+install npm 
+
+`npm install`
+
 install the bash settings
 
-`stow bash-all`
-`stow bash-no-proxy`
+`stow bash`
 
 install terminator settings
 

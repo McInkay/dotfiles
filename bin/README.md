@@ -26,15 +26,22 @@ Shows branches that are local, as well as the checked out branch. Shows if chang
 whether we are behind or ahead of our tracked branch (or whether we have a tracked branch at all) and shows us
 whether there are changes to master ahead of where we branched off it.
 
+## rewrite-history
+
+This needs to be edited to define the email address to be changed, and what the new email address and name
+should be. It will then go through all the git commits in the history and change the user information for
+the commits that used that old email address. This will rewrite history, so make sure it is used sparingly.
+
 ## terminator.sh
 
 Used to show/hide terminator when run. Useful for adding to a keycombination.
 
+## version-increment
+
+Figures out the version for a maven or npm project in the current directory, prints it out, and asks 
+what version you want incremented. Then it will increment that version according to semver.
+
 # Directories
-
-## fun
-
-A few random programs that do random fun things.
 
 ## libs
 

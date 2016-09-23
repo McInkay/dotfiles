@@ -1,7 +1,0 @@
-#!/bin/bash
-
-BWHITE="\033[1;37m"
-BWHITEC="\[\033[1;37m\]"
-
-RESET="\033[0m"
-RESETC="\[\033[0m\]"

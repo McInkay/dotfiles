@@ -1,4 +1,2 @@
-bin/unsynced/*
-!bin/unsynced/.gitkeep
 node_modules/
 .idea

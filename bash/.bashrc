@@ -1,11 +1,24 @@
+#!/usr/bin/env bash
+
 # Global definitions
 if [ -f /etc/bashrc ]; then
   . /etc/bashrc
 fi
 
-export DISPLAY=:0.0
-. ~/.dotfiles/bin/libs/env_variables
-. ~/.dotfiles/bin/libs/functions
-. ~/.dotfiles/bin/libs/bash-prompt
+# Add bin to path
+PATH="$HOME/.dotfiles/bin:$PATH"
+for d in ~/.dotfiles/bin/*/; do
+  PATH="$d:$PATH"
+done
+export PATH
 
-setxkbmap gb
+export DISPLAY=:0.0
+
+# Include other libraries
+. env-variables
+. functions
+. bash-prompt
+
+#setxkbmap gb
+
+export PROMPT_COMMAND='history -a'

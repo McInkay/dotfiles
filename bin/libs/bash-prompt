@@ -1,4 +1,5 @@
-. ~/.dotfiles/bin/libs/git-prompt
+#!/usr/bin/env bash
+. git-prompt
 
 USER="\u"
 HOST="\H"

@@ -1,10 +1,10 @@
 {
   "name": "dotfiles",
   "version": "1.0.0",
-  "description": "Javascript API for the trades frontend.",
+  "description": "Dotfiles repo for YaManicKill",
   "repository": {
     "type": "git",
-    "url": "ssh://git@stash.itcm.oneadr.net:7999/nexus/etrading-trades-api.git"
+    "url": "ssh://git@github.com:YaManicKill/dotfiles.git"
   },
   "dependencies": {
     "async": "^2.0.0-rc.2",
