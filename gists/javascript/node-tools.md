@@ -1,4 +1,4 @@
-## Run if not requred
+## Figure out if required or run directly
 
 ```
 if (!module.parent) {
