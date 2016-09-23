@@ -39,7 +39,7 @@ for (let i in dirs) {
     let dir = dirs[i];
     const repoRows = [];
     let branches = [];
-    let checkedOut, LOCAL, MASTERPOINT, MASTER, REMOTE, BASE;
+    let checkedOut, LOCAL, MASTERPOINT, MASTER, REMOTE, BASE, HASMASTER;
     nodegit.Repository.open(path.resolve(DIR, dir + "\\.git")).then(function (repo) {
       repo.getReferences(3)
       .then(getBranches)
@@ -96,8 +96,13 @@ for (let i in dirs) {
         hashPromises.push(masterpointPromise);
 
         // Where master is currently
+        hashPromises.push(nodegit.Reference.nameToId(repo, "refs/remotes/origin/master").then(function(oid) {
+          return MASTER = oid.tostrS();
+        }).catch(errorSwallower));
+
+        // If we have master locally
         hashPromises.push(repo.getMasterCommit().then(function (commit) {
-          return MASTER = commit.toString();
+          return HASMASTER = true;
         }).catch(errorSwallower));
 
         // The remote for this branch
@@ -133,7 +138,7 @@ for (let i in dirs) {
           repoRows.push(maybeAddBranch("Diverged", branches));
         }
 
-        if (MASTERPOINT != MASTER && MASTERPOINT !== LOCAL && MASTER !== undefined) {
+        if (MASTERPOINT != MASTER && MASTERPOINT !== LOCAL && HASMASTER) {
           repoRows.push(maybeAddBranch("Needs rebased", branches));
         }
       })
