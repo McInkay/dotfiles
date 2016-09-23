@@ -3,7 +3,8 @@
 	email = "alistair@10people.co.uk"
 
 [core]
-	autocrlf = true
+    eol = lf
+    autocrlf = input
 
 [alias]
 	cob = checkout -b
@@ -22,7 +23,9 @@
 	aa = !git add -u && git add . && git status
 	up = !git fetch && git rebase origin/master
 	k = !git fetch && gitk --all
+
 [push]
 	default = simple
+
 [init]
   templatedir = ~/.git-templates
