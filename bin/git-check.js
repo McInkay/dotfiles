@@ -50,6 +50,9 @@ for (let i in dirs) {
           return ref.isHead();
         })[0];
         branches.splice(branches.indexOf(checkedOut), 1);
+        if (!checkedOut) {
+          return "";
+        }
         repoRows.push([dir, "* " + checkedOut.shorthand().trim()]);
         return checkedOut.shorthand();
       })
