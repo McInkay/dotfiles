@@ -10,10 +10,11 @@
     "async": "^2.0.0-rc.2",
     "asyncawait": "^1.0.3",
     "bluebird": "^3.3.4",
+    "clear": "0.0.1",
     "cli-table": "^0.3.1",
     "memwatch-next": "^0.2.10",
     "minimist": "^1.2.0",
-    "nodegit": "^0.12.1",
+    "nodegit": "^0.14.1",
     "prompt": "^1.0.0",
     "semver": "^5.1.0",
     "shelljs": "^0.6.0"
