@@ -2,57 +2,56 @@
   focus = mouse
   tab_position = hidden
 [keybindings]
-[profiles]
-  [[default]]
-    background_darkness = 0.0
-    use_system_font = False
-    font = Droid Sans Mono 11
-    background_image = None
 [layouts]
   [[default]]
     [[[child0]]]
-      position = 1920:0
-      type = Window
       order = 0
       parent = ""
+      position = 1920:0
       size = 1920, 1048
+      type = Window
     [[[child1]]]
-      position = 527
-      type = HPaned
       order = 0
       parent = child0
+      position = 527
+      type = HPaned
     [[[child3]]]
+      order = 1
+      parent = child1
       position = 529
       type = VPaned
-      order = 1
-      parent = child1
     [[[child4]]]
+      order = 0
+      parent = child3
       position = 716
       type = HPaned
-      order = 0
-      parent = child3
     [[[terminal2]]]
-      profile = default
       command = cheatsheet
-      type = Terminal
       order = 0
       parent = child1
-    [[[terminal5]]]
       profile = default
-      command = ""
       type = Terminal
+    [[[terminal5]]]
+      command = ""
       order = 0
       parent = child4
-    [[[terminal7]]]
       profile = default
-      command = ""
       type = Terminal
-      order = 1
-      parent = child3
     [[[terminal6]]]
-      profile = default
-      type = Terminal
+      command = git-check ~/dev/
       order = 1
       parent = child4
-      command = git-check ~/dev/
+      profile = default
+      type = Terminal
+    [[[terminal7]]]
+      command = ""
+      order = 1
+      parent = child3
+      profile = default
+      type = Terminal
 [plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.0
+    background_image = None
+    font = Droid Sans Mono 11
