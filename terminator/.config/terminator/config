@@ -3,19 +3,18 @@
   focus = mouse
   hide_from_taskbar = True
   tab_position = hidden
-  window_state = fullscreen
+  window_state = maximise
 [keybindings]
 [layouts]
   [[default]]
     [[[child0]]]
-      fullscreen = True
+      fullscreen = False
       last_active_term = b63fc090-f575-4082-a2c8-0e3664f99373
       last_active_window = True
       maximised = True
       order = 0
       parent = ""
       position = 0:0
-      size = 1920, 1016
       type = Window
     [[[child1]]]
       order = 0
