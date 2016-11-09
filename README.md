@@ -54,6 +54,22 @@ but you can override the default behavior and symlink files to another location 
 A few of my files and libraries are node scripts, and require some node modules. To use them, just go to the .dotfiles directory and run `npm install`
 
 #tl;dr
+Install dependencies
+
+* stow
+* node (and npm)
+* gcc-c++ (for node-gyp)
+* make (for node-gyp)
+* openssl-devl (for node-git)
+* wmctrl (for terminator.sh script)
+
+Fedora:
+
+```
+curl --silent --location https://rpm.nodesource.com/setup_6.x | sudo bash -
+sudo dnf install nodejs gcc-c++ make wmctrl stow openssl-devel
+```
+
 navigate to your home directory
 
 `cd ~`
