@@ -62,6 +62,7 @@ Install dependencies
 * make (for node-gyp)
 * openssl-devl (for node-git)
 * wmctrl (for terminator.sh script)
+* tree (t() function in bashrc, shows a tree structure of directories)
 
 Fedora:
 
