@@ -11,3 +11,17 @@ if (!module.parent) {
     module.exports = app;
 }
 ```
+
+## Check outdates packages
+
+`npm outdated`
+
+## Open repo
+
+`npm repo $package`
+
+## Global directory change
+
+`npm config set prefix $dir`
+
+This could allow me to have stuff in home directory. I like this.
