@@ -42,19 +42,21 @@
       type = Terminal
       uuid = 2f9993c1-049d-406c-a769-40ca685408af
     [[[terminal5]]]
+      command = ""
       order = 0
       parent = child4
       profile = default
       type = Terminal
       uuid = b63fc090-f575-4082-a2c8-0e3664f99373
     [[[terminal6]]]
-      command = git-check ~/dev/
+      command = git-check -d ~/dev/
       order = 1
       parent = child4
       profile = default
       type = Terminal
       uuid = 20036f6e-2f16-4693-b35a-f6e044a8dd36
     [[[terminal7]]]
+      command = ""
       order = 1
       parent = child3
       profile = default
@@ -66,4 +68,5 @@
     background_darkness = 0.0
     background_image = None
     font = Droid Sans Mono 11
+    scrollback_infinite = True
     show_titlebar = False
