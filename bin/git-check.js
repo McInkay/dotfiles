@@ -14,7 +14,9 @@ const Promise = require("bluebird");
 const args = require('minimist')(process.argv.slice(2));
 let VW = process.stdout.columns;
 const PDIR = args.d || args.x || process.cwd();
-const DIR = exec('cygpath -w ' + PDIR, {silent: true}).output.replace("\n", "");
+const os = exec('uname -o', {silent: true}).output.toLowerCase();
+
+const DIR = os.includes('Cygwin') ? exec('cygpath -w ' + PDIR, {silent: true}).output.replace("\n", "") : PDIR;
 
 cd(DIR);
 const dirs = ls();
@@ -40,7 +42,7 @@ for (let i in dirs) {
     const repoRows = [];
     let branches = [];
     let checkedOut, LOCAL, MASTERPOINT, MASTER, REMOTE, BASE, HASMASTER;
-    nodegit.Repository.open(path.resolve(DIR, dir + "\\.git")).then(function (repo) {
+    nodegit.Repository.open(path.resolve(DIR, dir, ".git")).then(function (repo) {
       repo.getReferences(3)
       .then(getBranches)
       .then(function (returnedBranches) {
