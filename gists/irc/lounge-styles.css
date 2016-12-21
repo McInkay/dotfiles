@@ -1,15 +1,3 @@
-/* Custom highlight */
-#chat .channel .highlight .text,
-#chat .channel .highlight .from {
-	color: #dcdccc !important;
-}
-
-#chat .channel .highlight .time,
-#chat .channel .highlight .from {
-	background-color: #006666;
-	border-color: #006666;
-}
-
 /* Better CSS box */
 #user-specified-css-input {
     font-family: monospace;
@@ -49,31 +37,26 @@
     top: 2px; right: -5px;
 }
 
-
 /*Thinner sidebar*/
 #sidebar,
 #footer,
 .tse-scroll-content
 {
-    width: 150px
+    width: 150px;
 }
 
 #main{
-    left: 150px
-}
-
-#sidebar div.chan{
-    width: 140px
+    left: 150px;
 }
 
 
 /*Thinner user sidebar*/
 #chat .sidebar{
-    width: 150px
+    width: 150px;
 }
 
 #chat .chat{
-    right: 150px
+    right: 150px;
 }
 
 /* <Nick> */
@@ -84,16 +67,7 @@
     content: ">";
 }
 
-/* highlight text for zenburn */
-.highlight .text{
-    color: #bb5555 !important;
-}
-
-/* remove name icon thingy */
-#nick {
-    display: none;
-}
-
-#form #input {
-    padding-left: 10px !important;
+/* highlight text for zenburn */		
+.highlight .text{		
+    color: #bb5555 !important;		
 }
