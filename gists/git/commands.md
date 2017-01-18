@@ -15,3 +15,7 @@
 * Magic
 
 ```git reflog```
+
+* Add chunk-by-chunk
+
+```git add -p```
