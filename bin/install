@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+if ! hash stow 2>/dev/null; then
+  echo >&2 "Stow is required. Please install and re-run"
+  exit 1
+fi
+
+echo -n "Would you like to install node dependencies? (y/n): "
+read node
+
+if [ "$node" == "y" ]; then
+	npm install
+
+	npm install -g mancy
+	npm install -g bit-bin
+fi
