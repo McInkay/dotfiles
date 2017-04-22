@@ -1,0 +1,50 @@
+"*":
+  "atom-beautify":
+    _analyticsUserId: "faa34ca5-b475-459b-be20-a06361224509"
+    js_indent_char: " "
+    js_indent_level: 2
+    js_indent_size: 2
+  autosave:
+    enabled: true
+  core:
+    allowPendingPaneItems: false
+    autoHideMenuBar: true
+    closeEmptyWindows: false
+    disabledPackages: [
+      "minimap"
+    ]
+    projectHome: "/home/al/dev"
+    themes: [
+      "seti-ui"
+      "atom-dark-syntax"
+    ]
+  editor:
+    fontSize: 13
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+    softTabs: false
+  "exception-reporting":
+    userId: "f1e1a5c4-14c3-6b65-c91c-2f93da7e633a"
+  "git-plus": {}
+  "highlight-selected": {}
+  linter:
+    errorPanelHeight: 151
+    ignoreVCSIgnoredFiles: false
+  "linter-eslint": {}
+  minimap:
+    absoluteMode: true
+    displayMinimapOnLeft: true
+  "one-dark-ui":
+    layoutMode: "Compact"
+  "seti-ui":
+    compactView: true
+  tabs:
+    alwaysShowTabBar: false
+    usePreviewTabs: false
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+  zentabs:
+    maximumOpenedTabs: 3
+    neverCloseUnsaved: true

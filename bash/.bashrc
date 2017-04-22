@@ -21,4 +21,7 @@ export DISPLAY=:0.0
 
 #setxkbmap gb
 
-export PROMPT_COMMAND='history -a'
+setxkbmap gb
+
+# added by travis gem
+[ -f /home/al/.travis/travis.sh ] && source /home/al/.travis/travis.sh

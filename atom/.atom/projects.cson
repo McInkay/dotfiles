@@ -1,0 +1,10 @@
+lounge:
+  title: "Lounge"
+  paths: [
+    "/home/al/dev/lounge"
+  ]
+porybox:
+  title: "Porybox"
+  paths: [
+    "/home/al/dev/porybox"
+  ]

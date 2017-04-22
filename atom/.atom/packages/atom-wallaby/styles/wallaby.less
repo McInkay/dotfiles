@@ -1,0 +1,207 @@
+@import "ui-variables";
+@import "wallaby-vars";
+
+.wallaby-status {
+  outline: 0 !important;
+  display: inline-block;
+  margin-left: @component-padding;
+  vertical-align: middle;
+  width: 14px;
+  height: 14px;
+
+  &.passing {
+    background-color: @green;
+    -webkit-mask-image: url("atom://atom-wallaby/styles/wallaby.svg");
+  }
+
+  &.failing {
+    background-color: @red;
+    -webkit-mask-image: url("atom://atom-wallaby/styles/wallaby.svg");
+  }
+
+  &.progress {
+    position: relative;
+    width: 0;
+    padding: 7px;
+    background: linear-gradient(@text-color 30%, transparent 30%, transparent 70%, fade(@text-color, 40%) 70%),
+    linear-gradient(to left, fade(@text-color, 20%) 30%, transparent 30%, transparent 70%, fade(@text-color, 80%) 70%);
+    background-repeat: no-repeat;
+    background-size: 10% 100%, 100% 10%;
+    background-position: 50% 0%, 0 50%;
+    -webkit-animation: loading .7s infinite steps(8);
+  }
+
+  &.progress:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(fade(@text-color, 10%) 30%, transparent 30%, transparent 70%, fade(@text-color, 50%) 70%),
+    linear-gradient(to left, fade(@text-color, 30%) 30%, transparent 30%, transparent 70%, fade(@text-color, 90%) 70%);
+    background-repeat: no-repeat;
+    background-size: 10% 100%, 100% 10%;
+    background-position: 50% 0%, 0 50%;
+    -webkit-transform: rotate(45deg);
+  }
+}
+
+@-webkit-keyframes loading {
+  100% {
+    -webkit-transform: rotate(1turn);
+  }
+}
+
+@keyframes loading {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+.wallaby-panel-view {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 40px;
+  height: 200px;
+  z-index: 2;
+
+  .wallaby-panel-view-resizer {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 10px;
+    cursor: row-resize;
+    z-index: 3;
+  }
+
+  .wallaby-panel-view-container {
+    padding: @component-padding / 2;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .wallaby-panel-view-header {
+      cursor: default;
+      -webkit-user-select: none;
+      padding: @component-padding/4 @component-padding/2;
+      .header-item {
+        margin: @component-padding/4 0;
+      }
+
+      .subtle-info-message {
+        color: @text-color-subtle;
+        padding-left: @component-padding * 2;
+      }
+
+      .icons {
+        padding-left: @component-padding/2;
+
+        .btn {
+          outline: 0 !important;
+        }
+
+        .icon {
+          &:before {
+            font-size: 14px;
+          }
+        }
+
+        .inactive, .inactive:hover {
+          color: @text-color !important;
+          cursor: default;
+          background: inherit;
+        }
+
+        .icon-playback-play {
+          color: @text-color-success;
+        }
+
+        .icon-primitive-square {
+          color: @text-color-error;
+        }
+
+        .icon-x {
+          color: @text-color-info;
+        }
+      }
+    }
+
+    .wallaby-panel-view-content {
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      font-size: @font-size;
+    }
+  }
+}
+
+.wallaby-tests-view {
+  max-height: 600px;
+  overflow: auto;
+  padding: @component-padding/4 @component-padding/2;
+  padding-right: @component-padding;
+  flex: 1;
+
+  > .error {
+    margin-bottom: @component-padding * 2;
+  }
+
+  a {
+    &.loc {
+      color: @text-color-info;
+      &:hover {
+        color: @text-color-info;
+      }
+    }
+
+    &.text {
+      text-decoration: none;
+      cursor: text;
+    }
+  }
+
+  .error > .header {
+    color: @text-color-error;
+  }
+
+  .message > .line {
+    display: inline;
+    margin-left: 0;
+    margin-top: 0;
+  }
+
+  .test > .error, .console, .line, .console > .message {
+    margin-left: @component-padding * 3;
+    margin-top: @component-padding;
+  }
+
+  .test {
+    margin-bottom: @component-padding * 3;
+
+    &.failing {
+      > .header {
+        color: @text-color-error;
+      }
+    }
+
+    .name {
+      font-weight: bold;
+    }
+
+    .time {
+      color: @text-color-subtle;
+      padding-left: @component-padding;
+    }
+  }
+}
+
+.platform-win32 {
+  .wallaby-panel-view {
+    .wallaby-panel-view-resizer {
+      cursor: ns-resize;
+    }
+  }
+}

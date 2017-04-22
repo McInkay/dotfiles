@@ -1,0 +1,21 @@
+{
+  "name": "wallaby-atom",
+  "version": "1.0.27",
+  "author": "Wallaby.js",
+  "license": "Proprietary",
+  "homepage": "http://wallabyjs.com",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "lodash": "*",
+    "grunt": "*",
+    "grunt-babel": "*",
+    "grunt-browserify": "*",
+    "grunt-bump": "0.0.16",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-compress": "^0.12.0",
+    "grunt-contrib-copy": "*",
+    "grunt-contrib-uglify": "*"
+  },
+  "private": true
+}
