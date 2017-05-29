@@ -19,8 +19,6 @@ export DISPLAY=:0.0
 . functions
 . bash-prompt
 
-#setxkbmap gb
-
 setxkbmap gb
 
 # added by travis gem
