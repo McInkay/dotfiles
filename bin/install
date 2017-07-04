@@ -1,17 +1,30 @@
 #!/usr/bin/env bash
+. ~/.nvm/nvm.sh
 
-if ! hash stow 2>/dev/null; then
-  echo >&2 "Stow is required. Please install and re-run"
-  exit 1
+
+if ! type stow 1>/dev/null 2>/dev/null; then
+    echo >&2 "Stow is required. Please install and re-run"
+    exit 1
 fi
 
-echo -n "Would you like to install node dependencies? (y/n): "
-read node
+if ! type nvm 1>/dev/null 2>/dev/null; then
+    echo >&2 "To install node dependencies, ensure you have nvm installed."
+else
+	echo -n "Would you like to install node dependencies? (y/n): "
+	read node
 
-if [ "$node" = "y" ]; then
-	npm install
+	if [ "$node" = "y" ]; then
+	    nvm install --lts
+	    nvm alias default lts/*
+        nvm use --lts
 
-	sudo npm install -g mancy
-	sudo npm install -g lana-cli
-	sudo npm install -g bit-bin
+		npm install
+		npm install -g hyperlayout hpm-cli
+        npm install -g mancy
+		npm install -g lana-cli
+		npm install -g bit-bin
+		hpm install hyperlayout
+		hpm install hyper-startup
+	fi
+
 fi
