@@ -14,7 +14,7 @@ module.exports = {
     cursorColor: 'rgba(248,28,229,0.8)',
 
     // `BEAM` for |, `UNDERLINE` for _, `BLOCK` for █
-    cursorShape: 'BLOCK',
+    cursorShape: 'UNDERLINE',
 
     // set to true for blinking cursor
     cursorBlink: false,
@@ -36,12 +36,12 @@ module.exports = {
 
     // set to `true` (without backticks) if you're using a Linux setup that doesn't show native menus
     // default: `false` on Linux, `true` on Windows (ignored on macOS)
-    showHamburgerMenu: '',
+    showHamburgerMenu: true,
 
     // set to `false` if you want to hide the minimize, maximize and close buttons
     // additionally, set to `'left'` if you want them on the left, like in Ubuntu
     // default: `true` on windows and Linux (ignored on macOS)
-    showWindowControls: '',
+    showWindowControls: false,
 
     // custom padding (css format, i.e.: `top right bottom left`)
     padding: '12px 14px',
@@ -96,24 +96,7 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-
-	
-    overlay: {
-      alwaysOnTop: true,
-      animate: false,
-      hasShadow: false,
-      hideDock: true,
-      hideOnBlur: true,
-      hotkeys: ['Ctrl+Space'],
-      position: 'top',
-      primaryDisplay: true,
-      resizable: true,
-      startAlone: true,
-      startup: true,
-      size: 1.0,
-      tray: true,
-      unique: false
-    },
+		commands: ['hyperlayout', 'clear']
   },
 
   // a list of plugins to fetch and install from npm
@@ -123,7 +106,19 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
-//    "hyperterm-overlay"
+    "hyperminimal",
+    "hyperterm-paste",
+    "hypercwd",
+    "hyperterm-alternatescroll",
+    "hyper-alt-click",
+    "hyperline",
+    "hyperlinks",
+    "hyper-transparent",
+    "hyperlayout",
+    // Theme
+    //    "hyperterm-overlay"
+    "hyper-solarized-dark",
+    "hyper-startup"
   ],
 
   // in development, you can create a directory under
