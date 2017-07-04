@@ -1,9 +1,13 @@
 #!/bin/bash
+WIN_NAME="$1"
+COMMAND="$2"
 TM_STATE=/tmp/tm-state
-WIN=$(wmctrl -lGx | grep -i "terminator.Terminator" | awk '{print $1}');
+WIN=$(wmctrl -lGx | grep -i "$WIN_NAME" | awk '{print $1}');
 if [[ $WIN == "" ]]
 then
-  terminator&
+  echo "Running command $COMMAND"
+  echo $COMMAND
+  eval $COMMAND&
   exit 0
 else
   if [[ -e $TM_STATE ]]
