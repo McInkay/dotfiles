@@ -1,9 +1,9 @@
 [
     [
         [
-            "cd ~/dev && clear",
-            "cd ~/dev && clear",
-            ["git-check -d ~/dev/", "cd ~/dev && clear"]
+            "clear",
+            "",
+            ["git-check -d ~/dev/", ""]
         ]
     ]
 ]
