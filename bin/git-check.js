@@ -11,7 +11,6 @@ const await = require('asyncawait/await');
 const Promise = require("bluebird");
 
 const args = require('minimist')(process.argv.slice(2));
-let VW = process.stdout.columns;
 const PDIR = args.d || args.x || process.cwd();
 const os = exec('uname -o', {silent: true}).output.toLowerCase();
 
@@ -168,18 +167,19 @@ for (let i in dirs) {
 /**
  * Run getting the information in parallel
  */
-table = new Table({
-	colAligns: ["left", "right"],
-	colWidths: [Math.floor(VW / 2) - 1, Math.floor(VW / 2) - 1],
-	style: {'padding-left': 0, 'padding-right': 0},
-	chars: {
-		'top': '', 'top-mid': '', 'top-left': '', 'top-right': '',
-		'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '',
-		'left': '', 'left-mid': '', 'mid': '', 'mid-mid': '',
-		'right': '', 'right-mid': '', 'middle': ' '
-	}
-});
 async.parallel(gitCalls, function (err, results) {
+	const VW = process.stdout.columns;
+	table = new Table({
+		colAligns: ["left", "right"],
+		colWidths: [Math.floor(VW / 2) - 1, Math.floor(VW / 2) - 1],
+		style: {'padding-left': 0, 'padding-right': 0},
+		chars: {
+			'top': '', 'top-mid': '', 'top-left': '', 'top-right': '',
+			'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': '',
+			'left': '', 'left-mid': '', 'mid': '', 'mid-mid': '',
+			'right': '', 'right-mid': '', 'middle': ' '
+		}
+	});
 	for (let i = 0; i < results.length; i++) {
 		if (results[i].length > 1) {
 			for (let j = 0; j < results[i].length; j++) {
