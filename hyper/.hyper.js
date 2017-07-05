@@ -96,7 +96,7 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-		commands: ['hyperlayout', 'clear']
+		hyperRun: ['hyperlayout']
   },
 
   // a list of plugins to fetch and install from npm
@@ -116,9 +116,8 @@ module.exports = {
     "hyper-transparent",
     "hyperlayout",
     // Theme
-    //    "hyperterm-overlay"
     "hyper-solarized-dark",
-    "hyper-startup"
+    "hyper-run"
   ],
 
   // in development, you can create a directory under
