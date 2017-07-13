@@ -3,24 +3,22 @@
 
 
 if ! type stow 1>/dev/null 2>/dev/null; then
-    echo >&2 "Stow is required. Please install and re-run"
-    exit 1
+	echo >&2 "Stow is required. Please install and re-run"
+	exit 1
 fi
 
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
 if ! type nvm 1>/dev/null 2>/dev/null; then
-    echo >&2 "To install node dependencies, ensure you have nvm installed."
+	echo >&2 "To install node dependencies, ensure you have nvm installed."
 else
 	echo -n "Would you like to install node dependencies? (y/n): "
 	read node
 
 	if [ "$node" = "y" ]; then
-	    nvm install --lts
-	    nvm alias default lts/*
-        nvm use --lts
-
 		npm install
 		npm install -g hyperlayout hpm-cli
-        npm install -g mancy
+		npm install -g mancy
 		npm install -g lana-cli
 		npm install -g bit-bin
 		hpm install hyperlayout
