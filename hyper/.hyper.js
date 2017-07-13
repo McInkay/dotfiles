@@ -96,7 +96,13 @@ module.exports = {
     // bellSoundURL: 'http://example.com/bell.mp3',
 
     // for advanced config flags please refer to https://hyper.is/#cfg
-		hyperRun: ['cd ~/dev', 'hyperlayout']
+    hyperRun: ['cd ~/dev', 'hyperlayout'],
+
+    paneNavigation: {
+      showIndicators: false,
+      focusOnMouseHover: true
+    }
+
   },
 
   // a list of plugins to fetch and install from npm
@@ -107,17 +113,21 @@ module.exports = {
   //   `project#1.0.1`
   plugins: [
     "hyperminimal",
-    "hyperterm-paste",
+//    "hyperterm-paste",
     "hypercwd",
-    "hyperterm-alternatescroll",
-    "hyper-alt-click",
-    "hyperline",
-    "hyperlinks",
-    "hyper-transparent",
+//    "hyperterm-alternatescroll",
+//    "hyper-alt-click",
+//    "hyperline",
+//    "hyperlinks",
+//    "hyper-transparent",
     "hyperlayout",
+    "hyper-run",
+//    "hyper-blink",
+//    "hyper-pane",
+
     // Theme
-    "hyper-solarized-dark",
-    "hyper-run"
+    // "hyper-solarized-dark"
+    "hyperterm-material"
   ],
 
   // in development, you can create a directory under
