@@ -3,7 +3,7 @@
         [
             "clear",
             "",
-            ["git-check -d ~/dev/", ""]
+            ["npx -p node-bin@6 -- git-check -d ~/dev/", ""]
         ]
     ]
 ]
