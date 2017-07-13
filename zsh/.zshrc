@@ -89,8 +89,13 @@ export NVM_DIR="/home/al/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Add bin to path
-PATH="$HOME/.dotfiles/bin:$PATH" 
+PATH="$HOME/.dotfiles/bin:$PATH"
 for d in ~/.dotfiles/bin/*/; do
-  PATH="$d:$PATH" 
+  PATH="$d:$PATH"
 done
 export PATH
+
+export DEFAULT_USER="al"
+prompt_context(){}
+
+unsetopt share_history
