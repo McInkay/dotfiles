@@ -17,6 +17,7 @@
 	s = status
 	d = branch -d
 	dd = branch -D
+	df = diff --staged
 	p = !git push origin `git symbolic-ref --short HEAD`
 	pp = !git push --set-upstream origin `git symbolic-ref --short HEAD`
 	a = !git add -u && git status
