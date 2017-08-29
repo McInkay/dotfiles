@@ -18,6 +18,8 @@ fs.readFile(file, 'utf8', function (err,data) {
 
   // Create files in ~/.texpander/trigger with content as the expansion
   Object.keys(expansions).forEach((key) => {
+		console.log("Updated text expansions, here's the text for windows");
+		console.log(key + "," + expansions[key]);
 		const newFile = path.join(dir, key.substring(1));
 		fs.writeFile(newFile, expansions[key], function (err) {
 			if (err) return console.log(err);
