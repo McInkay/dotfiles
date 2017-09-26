@@ -135,7 +135,7 @@ module.exports = {
   // to load it and avoid it being `npm install`ed
   localPlugins: [],
 
-  "editor:paste": "ctrl+v"
+  "editor:paste": "ctrl+shift+v"
 
 };
 
