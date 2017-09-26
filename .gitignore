@@ -1,2 +1,6 @@
 node_modules/
 .idea
+code/.config/Code/CachedData/
+code/.config/Code/Cache/
+code/.config/Code/machineid
+code/.config/Code/Local Storage/
