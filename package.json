@@ -15,7 +15,10 @@
     "git-hooks": "^1.1.8",
     "memwatch-next": "^0.2.10",
     "minimist": "^1.2.0",
+    "node-fetch": "^1.7.3",
+    "node-watch": "^0.5.5",
     "nodegit": "^0.19.0",
+    "notify-send": "^0.1.2",
     "prompt": "^1.0.0",
     "semver": "^5.1.0",
     "shelljs": "^0.6.0"
