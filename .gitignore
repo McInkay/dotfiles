@@ -4,3 +4,5 @@ code/.config/Code/CachedData/
 code/.config/Code/Cache/
 code/.config/Code/machineid
 code/.config/Code/Local Storage/
+code/.config/Code/Backups/workspaces.json
+code/.config/Code/storage.json
