@@ -16,6 +16,11 @@
             "label": "Ctrl+Shift+T",
             "isNative": true
         },
+        "workbench.action.openRecent": {
+            "id": "workbench.action.openRecent",
+            "label": "Ctrl+R",
+            "isNative": true
+        },
         "workbench.action.files.save": {
             "id": "workbench.action.files.save",
             "label": "Ctrl+S",
@@ -427,6 +432,28 @@
             "isNative": true
         }
     },
-    "theme": "vs-dark vscode-theme-defaults-themes-dark_plus-json",
-    "themeBackground": "#1e1e1e"
+    "theme": "vs-dark vscode-theme-solarized-dark-themes-solarized-dark-color-theme-json",
+    "themeBackground": "#002b36",
+    "pickerWorkingDir": "/home/al",
+    "openedPathsList": {
+        "workspaces": [
+            "/home/al/.dotfiles"
+        ],
+        "files": []
+    },
+    "windowsState": {
+        "openedWindows": [],
+        "openedFolders": [],
+        "lastActiveWindow": {
+            "folderPath": "/home/al/.dotfiles",
+            "backupPath": "/home/al/.config/Code/Backups/e5b20417b46bf3a25b2ce71359bce6ac",
+            "uiState": {
+                "mode": 0,
+                "x": 0,
+                "y": 64,
+                "width": 1920,
+                "height": 951
+            }
+        }
+    }
 }
