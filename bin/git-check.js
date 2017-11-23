@@ -69,7 +69,7 @@ for (let i in dirs) {
 						let status = diff.getDelta(i).status();
 						if (status === nodegit.Diff.DELTA.UNTRACKED) {
 							untracked = true;
-						} else if (status !== nodegit.Diff.DELTA.UMODIFIED) {
+						} else if (status !== nodegit.Diff.DELTA.UNMODIFIED) {
 							uncommitted = true;
 						}
 					}
