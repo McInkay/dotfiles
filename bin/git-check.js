@@ -6,8 +6,6 @@ const async = require("async");
 const Table = require("cli-table");
 const nodegit = require("nodegit");
 const path = require("path");
-const clear = require("clear");
-const await = require('asyncawait/await');
 const Promise = require("bluebird");
 
 const args = require('minimist')(process.argv.slice(2));
@@ -19,14 +17,12 @@ const DIR = os.includes('Cygwin') ? exec('cygpath -w ' + PDIR, {silent: true}).o
 cd(DIR);
 const dirs = ls();
 
-const fetchCalls = [];
 const gitCalls = [];
 let table;
 console.log("Gathering info...");
 
-for (let i in dirs) {
+for (let dir of dirs) {
 	cd(DIR);
-	let dir = dirs[i];
 
 	if (!isDirectory(dir) || !isGitRepo(dir)) {
 		continue;
@@ -36,7 +32,6 @@ for (let i in dirs) {
 	exec('git fetch -p', {silent: true});
 
 	gitCalls.push(function (callback) {
-		let dir = dirs[i];
 		const repoRows = [];
 		let branches = [];
 		let checkedOut, LOCAL, MASTERPOINT, MASTER, REMOTE, BASE, HASMASTER;
@@ -104,7 +99,7 @@ for (let i in dirs) {
 					}).catch(errorSwallower));
 
 					// If we have master locally
-					hashPromises.push(repo.getMasterCommit().then(function (commit) {
+					hashPromises.push(repo.getMasterCommit().then(function () {
 						return HASMASTER = true;
 					}).catch(errorSwallower));
 
@@ -141,7 +136,7 @@ for (let i in dirs) {
 						repoRows.push(maybeAddBranch("Diverged", branches));
 					}
 
-					if (MASTERPOINT != MASTER && MASTERPOINT !== LOCAL && HASMASTER) {
+					if (MASTERPOINT !== MASTER && MASTERPOINT !== LOCAL && HASMASTER) {
 						repoRows.push(maybeAddBranch("Needs rebased", branches));
 					}
 				})
@@ -206,6 +201,7 @@ function maybeAddBranch(string, branches) {
 
 function errorSwallower(err) {}
 
+// noinspection JSUnusedLocalSymbols
 function errorPrinter(err) {
 	// Easy way to print errors, set errorSwallower to call this function
 	console.log(err);
