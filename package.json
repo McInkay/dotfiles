@@ -18,6 +18,7 @@
     "node-fetch": "^1.7.3",
     "node-watch": "^0.5.5",
     "nodegit": "^0.19.0",
+    "nodegit-lfs": "0.0.15",
     "notify-send": "^0.1.2",
     "prompt": "^1.0.0",
     "semver": "^5.1.0",

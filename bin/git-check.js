@@ -5,6 +5,8 @@ require("./libs/shell.js");
 const async = require("async");
 const Table = require("cli-table");
 const nodegit = require("nodegit");
+const addLfs = require('nodegit-lfs');
+addLfs(nodegit);
 const path = require("path");
 const Promise = require("bluebird");
 
@@ -36,6 +38,7 @@ for (let dir of dirs) {
 		let branches = [];
 		let checkedOut, LOCAL, MASTERPOINT, MASTER, REMOTE, BASE, HASMASTER;
 		nodegit.Repository.open(path.resolve(DIR, dir, ".git")).then(function (repo) {
+			const hasLFS = nodegit.LFS.repoHasLfs(repo);
 			repo.getReferences(3)
 				.then(getBranches)
 				.then(function (returnedBranches) {
@@ -62,10 +65,13 @@ for (let dir of dirs) {
 					let uncommitted, untracked;
 					for (let i = 0; i < diff.numDeltas(); i++) {
 						let status = diff.getDelta(i).status();
+						let path = diff.getDelta(i).newFile().path();
+						let notInLFS = (!hasLFS || (hasLFS && !['png', 'jpg', 'sql', 'xlsx'].includes(path.split(".").pop())));
 						if (status === nodegit.Diff.DELTA.UNTRACKED) {
 							untracked = true;
-						} else if (status !== nodegit.Diff.DELTA.UNMODIFIED) {
+						} else if (status !== nodegit.Diff.DELTA.UNMODIFIED && notInLFS) {
 							uncommitted = true;
+							console.log(path);
 						}
 					}
 					if (uncommitted) {
