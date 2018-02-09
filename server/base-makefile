@@ -1,0 +1,24 @@
+all: build uninstall install
+
+build:
+	@echo "Building $(IMAGENAME) from ./"
+	@docker build -q -t $(IMAGENAME) . --no-cache
+
+install: initialrun
+
+run:
+	docker run $(IMAGENAME)
+
+stop:
+	@echo -n "Stopping $(IMAGENAME) if running..."
+	@docker stop $(IMAGENAME) >/dev/null 2>&1 || true
+	@echo " done"
+
+uninstall: stop
+	@echo -n "Uninstalling $(IMAGENAME) if it exists..."
+	@docker rm $(IMAGENAME) >/dev/null 2>&1 || true
+	@echo " done"
+
+clean: uninstall
+	@echo "Removing image for $(IMAGENAME)"
+	@docker rmi $(IMAGENAME)
