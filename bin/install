@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-. ~/.nvm/nvm.sh
-
 
 if ! type stow 1>/dev/null 2>/dev/null; then
 	echo >&2 "Stow is required. Please install and re-run"
@@ -11,8 +9,8 @@ echo "Ensure you install xclip xdotool zenity"
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-if ! type nvm 1>/dev/null 2>/dev/null; then
-	echo >&2 "To install node dependencies, ensure you have nvm installed."
+if ! type node 1>/dev/null 2>/dev/null; then
+	echo >&2 "To install node dependencies, ensure you have node installed."
 else
 	echo -n "Would you like to install node dependencies? (y/n): "
 	read node
