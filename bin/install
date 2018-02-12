@@ -17,10 +17,8 @@ else
 
 	if [ "$node" = "y" ]; then
 		npm install
-		npm install -g hyperlayout hpm-cli
-		npm install -g mancy
-		npm install -g lana-cli
-		npm install -g bit-bin
+		sudo npm install -g hyperlayout hpm-cli
+		sudo npm install -g mancy lana-cli bit-bin node-check-updates git-fire
 		hpm install hyperlayout
 		hpm install hyper-startup
 	fi
