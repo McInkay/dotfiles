@@ -3,6 +3,6 @@
 DIR=$(pwd);
 cd ~/.dotfiles/bin/
 while [ 1 -ne 0 ]; do
-  node git-check.js $* -x $DIR
+  node --optimize_for_size --max_old_space_size=460 --gc_interval=100 git-check.js $* -x $DIR
   read -t 10
 done
