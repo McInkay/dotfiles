@@ -12,7 +12,5 @@ PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
 export PATH
 
-file-watch-upload.js -d Uploads -a $UPLOAD_API_KEY
-
 setxkbmap gb
 

@@ -25,6 +25,3 @@ else
 
 fi
 
-gsettings set org.gnome.gnome-screenshot auto-save-directory "file:///home/$USER/Uploads/"
-echo "export \$UPLOAD_API_KEY" > ~/.env_vars
-echo "Add your api key to ~/.env_vars"
