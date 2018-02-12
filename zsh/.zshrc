@@ -84,6 +84,8 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+PATH="$PATH\$PATH:/opt/gitkraken"
+
 # Add bin to path
 PATH="$HOME/.dotfiles/bin:$PATH"
 for d in ~/.dotfiles/bin/*/; do
