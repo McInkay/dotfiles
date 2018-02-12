@@ -25,3 +25,5 @@ else
 
 fi
 
+sudo dnf copr enable heliocastro/hack-fonts
+sudo dnf install hack-fonts
