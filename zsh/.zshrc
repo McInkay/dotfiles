@@ -74,6 +74,7 @@ export EDITOR='nano'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias sess="tmux attach -t main || tmux new -s main"
 
 PATH="$PATH\$PATH:/opt/gitkraken"
 
