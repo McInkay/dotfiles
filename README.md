@@ -98,3 +98,7 @@ install terminator settings
 uninstall terminator settings
 
 `stow -D terminator`
+
+install ansible (a non-user based one)
+
+`stow -t / ansible`
