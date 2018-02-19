@@ -20,5 +20,6 @@ uninstall: stop
 	@echo " done"
 
 clean: uninstall
-	@echo "Removing image for $(IMAGENAME)"
-	@docker rmi $(IMAGENAME)
+	@echo -n "Removing image for $(IMAGENAME)..."
+	@docker rmi $(IMAGENAME) >/dev/null 2>&1 || true
+	@echo " done"
