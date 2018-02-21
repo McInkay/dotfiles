@@ -8,7 +8,6 @@
     - hyperlayout
     - hpm-cli
     - mancy
-    - bit-bin
 
 - name: Install hpm packages
   command: hpm install {{ item }}
