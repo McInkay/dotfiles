@@ -56,7 +56,7 @@
     accept_hostkey: yes
   when: not dotfiles.stat.exists
 
-- name: Install packages based on package.json.
+- name: Install dotfiles npm packages
   npm:
     path: ~/.dotfiles
 
