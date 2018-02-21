@@ -20,7 +20,7 @@
 
 - name: Execute the node script
   become: true
-  script: /tmp/setup_8.x
+  shell: bash /tmp/setup_8.x
 
 - name: Ensure dependencies are installed
   become: true
