@@ -43,11 +43,17 @@
     - npm-check-updates
     - git-fire
 
+- name: Check if dotfiles already exists
+  stat:
+    path: ~/.dotfiles
+  register: dotfiles
+
 - name: Ensure dotfiles repository is cloned locally.
   git:
     repo: https://github.com/McInkay/dotfiles.git
     dest: ~/.dotfiles
     accept_hostkey: yes
+  when: not dotfiles.stat.exists
 
 - name: Install packages based on package.json.
   npm:
