@@ -1,29 +1,3 @@
 #!/usr/bin/env bash
 
-if ! type stow 1>/dev/null 2>/dev/null; then
-	echo >&2 "Stow is required. Please install and re-run"
-	exit 1
-fi
-
-echo "Ensure you install xclip xdotool zenity"
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-
-if ! type node 1>/dev/null 2>/dev/null; then
-	echo >&2 "To install node dependencies, ensure you have node installed."
-else
-	echo -n "Would you like to install node dependencies? (y/n): "
-	read node
-
-	if [ "$node" = "y" ]; then
-		npm install
-		sudo npm install -g hyperlayout hpm-cli
-		sudo npm install -g mancy lana-cli bit-bin node-check-updates git-fire
-		hpm install hyperlayout
-		hpm install hyper-startup
-	fi
-
-fi
-
-sudo dnf copr enable heliocastro/hack-fonts
-sudo dnf install hack-fonts
+ansible-playbook ~/.dotfiles/playbooks/client.yml -i ~/.dotfiles/playbooks/inventory
