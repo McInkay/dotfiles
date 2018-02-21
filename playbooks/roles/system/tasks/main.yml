@@ -35,6 +35,7 @@
     - nodejs
 
 - name: Install global npm scripts
+  become: true
   npm:
     name: "{{ item }}"
     global: yes
