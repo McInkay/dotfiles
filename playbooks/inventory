@@ -1,0 +1,4 @@
+localhost   ansible_connection=local ansible_become_pass=""
+
+[servers]
+178.62.79.25

@@ -1,0 +1,29 @@
+---
+- name: install docker-py
+  become: true
+  pip:
+    name: docker-py
+  tags:
+    - test
+
+- name: Build lounge image
+  docker_image:
+     path: ~/.dotfiles/server/lounge
+     name: lounge
+     nocache: true
+  tags:
+    - test
+
+- name: lounge docker container
+  docker_container:
+    name: lounge
+    image: lounge
+    state: started
+    ports:
+      - 9000:9000
+    restart_policy: always
+    volumes:
+      - /home/al/.thelounge:/home/lounge
+    keep_volumes: false
+  tags:
+    - test

@@ -1,0 +1,62 @@
+---
+- name: be sure libselinux-python are installed
+  become: true
+  dnf: >
+    name=libselinux-python
+    state=present
+  when: ansible_os_family == 'RedHat'
+
+- name: Download node script (fedora)
+  get_url:
+    url: https://rpm.nodesource.com/setup_8.x
+    dest: /tmp
+  when: ansible_os_family == 'RedHat'
+
+- name: Download node script (ubuntu)
+  get_url:
+    url: https://deb.nodesource.com/setup_8.x
+    dest: /tmp
+  when: ansible_os_family == 'Debian'
+
+- name: Execute the node script
+  become: true
+  script: /tmp/setup_8.x
+
+- name: Ensure dependencies are installed
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - stow
+    - tmux
+    - zsh
+    - git
+    - nodejs
+
+- name: Install global npm scripts
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - lana-cli
+    - npm-check-updates
+    - git-fire
+
+- name: Ensure dotfiles repository is cloned locally.
+  git:
+    repo: https://github.com/McInkay/dotfiles.git
+    dest: ~/.dotfiles
+    accept_hostkey: yes
+
+- name: Install packages based on package.json.
+  npm:
+    path: ~/.dotfiles
+
+- name: Set up dotfiles
+  shell: stow -d ~/.dotfiles -t ~/ {{ item }}
+  with_items:
+    - zsh
+    - tmux
+    - git
+    - ssh

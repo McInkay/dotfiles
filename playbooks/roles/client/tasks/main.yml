@@ -1,0 +1,17 @@
+---
+- name: Install global npm scripts
+  become: true
+  npm:
+    name: "{{ item }}"
+    global: yes
+  with_items:
+    - hyperlayout
+    - hpm-cli
+    - mancy
+    - bit-bin
+
+- name: Install hpm packages
+  command: hpm install {{ item }}
+  with_items:
+    - hyperlayout
+    - hyper-startup
