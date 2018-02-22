@@ -1,4 +1,13 @@
 ---
+- name: Ensure user has correct shell and group
+  become: true
+  user:
+    name: al
+    append: yes
+    groups: docker
+    shell: /bin/zsh
+  meta: reset_connection
+
 - name: be sure libselinux-python are installed
   become: true
   dnf: >
