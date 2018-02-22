@@ -43,6 +43,17 @@
     - git
     - nodejs
 
+- name: Check if oh-my-zsh already exists
+  stat:
+    path: ~/.oh-my-zsh
+  register: ohmyzsh
+
+- name: Install oh-my-zsh
+  git:
+    repo=https://github.com/robbyrussell/oh-my-zsh
+    dest=~/.oh-my-zsh
+  when: not ohmyzsh.stat.exists
+
 - name: Install global npm scripts
   become: true
   npm:
