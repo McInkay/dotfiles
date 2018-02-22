@@ -40,3 +40,4 @@ export PATH
 export DEFAULT_USER="al"
 
 unsetopt share_history
+unsetopt PROMPT_SP
