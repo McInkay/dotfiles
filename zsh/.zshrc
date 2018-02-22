@@ -38,6 +38,5 @@ done
 export PATH
 
 export DEFAULT_USER="al"
-prompt_context(){}
 
 unsetopt share_history
