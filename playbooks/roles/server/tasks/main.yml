@@ -1,10 +1,4 @@
 ---
-- name: install docker-py
-  become: true
-  pip:
-    name: docker-py
-  tags:
-    - test
 
 - name: Build lounge image
   docker_image:
