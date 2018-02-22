@@ -1,0 +1,4 @@
+---
+dependencies:
+  - { role: "geerlingguy.docker", become: true }
+  - { role: "geerlingguy.pip", become: true }
