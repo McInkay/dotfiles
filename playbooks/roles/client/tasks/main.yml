@@ -14,3 +14,18 @@
   with_items:
     - hyperlayout
     - hyper-startup
+
+- name: Add hack repo
+  become: true
+  yum_repository:
+    name: Copr repo for hack fonts
+    description: Some YUM repo
+    baseurl: https://copr-be.cloud.fedoraproject.org/results/heliocastro/hack-fonts/fedora-$releasever-$basearch/
+    gpgkey: https://copr-be.cloud.fedoraproject.org/results/heliocastro/hack-fonts/pubkey.gpg
+    gpgcheck: false
+
+- name: Install hack font
+  become: true
+  package:
+    name: hack-fonts
+    state: latest
