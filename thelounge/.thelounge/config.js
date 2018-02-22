@@ -61,5 +61,5 @@ module.exports = {
 	debug: {
 		ircFramework: false,
 		raw: false,
-	},
+	}
 };
