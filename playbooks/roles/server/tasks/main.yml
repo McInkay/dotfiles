@@ -11,8 +11,6 @@
      path: ~/.dotfiles/server/lounge
      name: lounge
      nocache: true
-  tags:
-    - test
 
 - name: lounge docker container
   docker_container:
@@ -25,5 +23,3 @@
     volumes:
       - /home/al/.thelounge:/home/lounge
     keep_volumes: false
-  tags:
-    - test
