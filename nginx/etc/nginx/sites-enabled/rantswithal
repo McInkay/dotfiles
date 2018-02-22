@@ -1,0 +1,9 @@
+server {
+    listen                  443 ssl;
+    server_name             rantswithal.com www.rantswithal.com;
+    ssl_certificate         /etc/letsencrypt/live/10people.co.uk-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key     /etc/letsencrypt/live/10people.co.uk-0001/privkey.pem; # managed by Certbot
+
+    root                    /var/www/rantswithal;
+    index                   index.html;
+}

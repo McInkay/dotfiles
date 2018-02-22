@@ -1,0 +1,15 @@
+server {
+    listen                  443 ssl;
+    server_name             yamanickill.com www.yamanickill.com;
+    ssl_certificate         /etc/letsencrypt/live/10people.co.uk-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key     /etc/letsencrypt/live/10people.co.uk-0001/privkey.pem; # managed by Certbot
+
+    location /completionist {
+        root                /var/www/;
+    }
+
+    location / {
+        return              301 https://alistair.mckinlay.me;
+    }
+
+}

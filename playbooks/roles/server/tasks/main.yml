@@ -1,4 +1,16 @@
 ---
+- name: Copy nginx configs
+  copy:
+    src: ~/.dotfiles/nginx/etc/nginx/sites-enabled
+    dest: /etc/nginx/sites-enabled
+    owner: root
+    group: root
+    mode: u+rw,g+rw,o+r
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
 
 - name: Build lounge image
   docker_image:

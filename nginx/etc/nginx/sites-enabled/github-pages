@@ -1,0 +1,18 @@
+server {
+    listen                  443 ssl;
+    server_name             10people.co.uk www.10people.co.uk alistair.mckinlay.me alistotle.co.uk www.alistotle.co.uk;
+    ssl_certificate         /etc/letsencrypt/live/10people.co.uk-0001/fullchain.pem; # managed by Certbot
+    ssl_certificate_key     /etc/letsencrypt/live/10people.co.uk-0001/privkey.pem; # managed by Certbot
+
+    location / {
+        proxy_pass          https://yamanickill.github.io;
+        proxy_set_header    Upgrade             $http_upgrade;
+        proxy_set_header    Connection          "upgrade";
+        proxy_http_version  1.1;
+        proxy_set_header    X-Real-IP           $remote_addr;
+        proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
+        proxy_set_header    Host                $host;
+        proxy_redirect      off;
+    }
+
+}
