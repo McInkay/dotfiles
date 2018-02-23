@@ -6,6 +6,8 @@
     append: yes
     groups: docker
     shell: /bin/zsh
+
+- name: Reset connection
   meta: reset_connection
 
 - name: be sure libselinux-python are installed
