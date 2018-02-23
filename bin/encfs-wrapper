@@ -1,0 +1,2 @@
+#!/bin/sh
+encfs -o nonempty --public --extpass="cat /home/al/.env_vars | grep ENCFS_PASSWORD | cut -d '=' -f 2" $*

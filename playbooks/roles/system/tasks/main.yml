@@ -76,6 +76,26 @@
     accept_hostkey: yes
   when: not dotfiles.stat.exists
 
+- name: Mount up device by label
+  become: true
+  mount:
+    path: /home/al/.dotfiles/znc
+    src: /home/al/.dotfiles/bin/encfs-wrapper#/home/al/.dotfiles/znc-enc
+    fstype: fuse
+    state: mounted
+    boot: true
+    opts: rw,user,auto
+
+- name: Mount up device by label
+  become: true
+  mount:
+    path: /home/al/.dotfiles/thelounge
+    src: /home/al/.dotfiles/bin/encfs-wrapper#/home/al/.dotfiles/thelounge-enc
+    fstype: fuse
+    state: mounted
+    boot: true
+    opts: rw,user,auto
+
 - name: Install dotfiles npm packages
   npm:
     path: ~/.dotfiles
@@ -87,3 +107,5 @@
     - tmux
     - git
     - ssh
+    - thelounge
+    - znc
