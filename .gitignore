@@ -1,5 +1,10 @@
-node_modules/
+# Idea project files
 .idea
+
+# Libraries
+node_modules/
+
+# VS code caches and local storage
 code/.config/Code/CachedData/
 code/.config/Code/Cache/
 code/.config/Code/machineid
