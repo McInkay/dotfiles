@@ -6,11 +6,6 @@
     height: 400px;
 }
 
-/* Hide the close button in sidebar*/
-.close{
-    display:none;
-}
-
 /* Compact sidebar */
 #sidebar .networks {
     padding: 6px 2px 6px 15px;
@@ -51,7 +46,6 @@
     left: 150px;
 }
 
-
 /*Thinner user sidebar*/
 #chat .sidebar{
     width: 150px;
@@ -59,17 +53,4 @@
 
 #chat .chat{
     right: 150px;
-}
-
-/* <Nick> */
-.messages .user:before {
-    content: "<";
-}
-.messages .user:after {
-    content: ">";
-}
-
-/* highlight text for zenburn */		
-.highlight .text{		
-    color: #bb5555 !important;		
 }
